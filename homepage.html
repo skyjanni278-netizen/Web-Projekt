@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vereinsname - Willkommen</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            text-decoration: none;
+            color: white;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: opacity 0.3s ease;
+        }
+
+        nav a:hover {
+            opacity: 0.8;
+        }
+
+        /* Dropdown Menu */
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            min-width: 150px;
+            background-color: #667eea;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+            z-index: 1000;
+        }
+
+        .dropdown:hover .dropdown-menu {
+            display: block;
+        }
+
+        .dropdown-menu li a {
+            color: white;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .dropdown-menu li a:hover {
+            background-color: #575757;
+        }
+
+        /* Main Content */
+        main {
+            flex: 1;
+            padding: 4rem 0;
+            background: linear-gradient(to bottom, #f8f9fa, #e9ecef);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .hero {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: #2c3e50;
+            font-weight: 300;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: #6c757d;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Content Sections */
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .content-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .content-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+
+        .content-card h3 {
+            color: #2c3e50;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .content-card p {
+            color: #6c757d;
+            line-height: 1.7;
+        }
+
+        /* Footer Styles */
+        footer {
+            background: #2c3e50;
+            color: white;
+            padding: 3rem 0 1rem;
+            margin-top: auto;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h4 {
+            margin-bottom: 1rem;
+            color: #ecf0f1;
+        }
+
+        .footer-section p,
+        .footer-section a {
+            color: #bdc3c7;
+            text-decoration: none;
+            line-height: 1.8;
+        }
+
+        .footer-section a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #34495e;
+            padding-top: 1rem;
+            text-align: center;
+            color: #95a5a6;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            nav ul {
+                gap: 1rem;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Utility Classes */
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 500;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            margin-top: 1rem;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <a href="homepage.html" class="logo">Vereinsname</a>
+            <nav>
+                <ul>
+                    <li><a href="homepage.html" class="active">Home</a></li>
+                    <li><a href="homepage.html#about">Über uns</a></li>
+                    <li><a href="newspage.html">News</a></li>
+                    <li><a href="shop.html">Shop</a></li>
+                    <li class="dropdown">
+                        <a href="Sportangebote.html">Sportangebote</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="Fußball1.html">Fußball</a></li>
+                            <li><a href="Handball1.html">Handball</a></li>
+                            <li><a href="Basketball1.html">Basketball</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="Kontakt.html">Kontakt</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <div class="container">
+            <!-- Hero Section -->
+            <section class="hero">
+                <h1>Willkommen bei unserem Verein</h1>
+                <p>Entdecken Sie unsere Gemeinschaft, unsere Werte und unsere Aktivitäten. 
+                   Wir freuen uns darauf, Sie als neues Mitglied begrüßen zu dürfen.</p>
+                <a href="#" class="btn">Mitglied werden</a>
+            </section>
+
+            <!-- Content Grid -->
+            <div class="content-grid" id="about">
+                <div class="content-card">
+                    <h3>Über unseren Verein</h3>
+                    <p>Erfahren Sie mehr über unsere Geschichte, unsere Mission und die Werte, 
+                       die uns als Gemeinschaft zusammenhalten. Seit vielen Jahren engagieren wir uns 
+                       für unsere Mitglieder und die lokale Gemeinschaft.</p>
+                </div>
+
+                <div class="content-card">
+                    <h3>Kommende Veranstaltungen</h3>
+                    <p>Bleiben Sie auf dem Laufenden über unsere nächsten Events, Treffen und 
+                       besonderen Aktivitäten. Von gesellschaftlichen Zusammenkünften bis hin zu 
+                       Fachvorträgen - hier ist für jeden etwas dabei.</p>
+                </div>
+
+                <div class="content-card">
+                    <h3>Mitgliedschaft</h3>
+                    <p>Werden Sie Teil unserer Gemeinschaft und profitieren Sie von exklusiven 
+                       Vorteilen, Networking-Möglichkeiten und der Chance, aktiv an der Gestaltung 
+                       unseres Vereinslebens teilzunehmen.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Kontakt</h4>
+                    <p>Vereinsname e.V.<br>
+                       Musterstraße 123<br>
+                       12345 Musterstadt<br>
+                       Tel: +49 123 456789<br>
+                       Email: info@vereinsname.de</p>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Schnelle Links</h4>
+                    <p><a href="#">Impressum</a><br>
+                       <a href="#">Datenschutz</a><br>
+                       <a href="#">Satzung</a><br>
+                       <a href="#">Vorstand</a><br>
+                       <a href="#">Newsletter</a></p>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Folgen Sie uns</h4>
+                    <p><a href="#">Facebook</a><br>
+                       <a href="#">Instagram</a><br>
+                       <a href="#">Twitter</a><br>
+                       <a href="#">LinkedIn</a></p>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2025 Vereinsname e.V. Alle Rechte vorbehalten.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
