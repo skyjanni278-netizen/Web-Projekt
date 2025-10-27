@@ -22,6 +22,31 @@ body {
 }
 
 /* =================================================
+   1.5. DHBW PROJECT BANNER
+   ================================================= */
+.dhbw-banner {
+    background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
+    color: white;
+    text-align: center;
+    padding: 0.5rem 0;
+    font-size: 0.9rem;
+    font-weight: 500;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    position: relative;
+    z-index: 1000;
+}
+
+.dhbw-banner a {
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.dhbw-banner a:hover {
+    text-decoration: underline;
+}
+
+/* =================================================
    2. HEADER & NAVIGATION
    ================================================= */
 header {
