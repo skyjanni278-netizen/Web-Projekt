@@ -1,39 +1,55 @@
-# Web-Projekt
+# Web-Projekt - Vereinswebsite
 
-Ein Studentenprojekt für Webentwicklung.
+Ein DHBW Heidenheim Studentenprojekt für Webentwicklung ohne JavaScript.
 
 ## Beschreibung
 
-Dieses Repository enthält die Dateien für mein Web-Projekt im Rahmen meines Studiums.
+Dieses Repository enthält eine vollständige Vereinswebsite als Studentenprojekt im Rahmen des Studiums an der DHBW Heidenheim (Studiengang Wirtschaftsinformatik).
+
+## Features
+
+- 📝 **Homepage** mit Vereinsinformationen
+- 🛒 **Shop-Seite** mit Produktkatalog (CSS-only)
+- ⚽ **Sportangebote** (Basketball, Fußball, Handball)
+- 📰 **News-Bereich** mit Artikeln
+- 📞 **Kontakt-Seite** mit Karte
+- 📱 **Responsive Design** für alle Geräte
 
 ## Installation
 
 ```bash
 # Repository klonen
-git clone <repository-url>
+git clone https://github.com/Ruekan/Web-Projekt.git
 
 # In das Projektverzeichnis wechseln
 cd Web-Projekt
 
-# Abhängigkeiten installieren (falls erforderlich)
-npm install
+# Website öffnen
+# Öffne homepage.html in einem modernen Browser
 ```
-
-## Verwendung
-
-[Hier können Sie später Anweisungen zur Verwendung Ihres Projekts hinzufügen]
 
 ## Technologien
 
-- HTML
-- CSS
-- JavaScript
-- [Weitere Technologien nach Bedarf hinzufügen]
+- ✅ **HTML5** - Semantische Markup-Struktur
+- ✅ **CSS3** - Styling, Grid, Flexbox, Animationen
+- ❌ **JavaScript** - Bewusst NICHT verwendet (CSS-only Ansatz)
+- 🎨 **Responsive Design** - Mobile-First Approach
+
+## Projektstruktur
+
+```
+Web-Projekt/
+├── 📄 HTML-Dateien (10 Seiten)
+├── 📄 main-consolidated.css (Alle Styles)
+├── 📂 backup/ (Alte CSS-Dateien)
+├── 📂 dokumentation/ (Anleitungen)
+└── 📂 Bilder/ (Website-Assets)
+```
 
 ## Autor
 
-[Ihr Name]
+DHBW Heidenheim Student - Studiengang Wirtschaftsinformatik
 
 ## Lizenz
 
-Dieses Projekt ist für Bildungszwecke erstellt.
+Dieses Projekt ist für Bildungszwecke an der DHBW Heidenheim erstellt.
