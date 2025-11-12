@@ -159,9 +159,9 @@ git commit -m "test"
 # 1. Neueste Version holen
 git pull
 
-# 2. homepage.html bearbeiten
+# 2. index.html bearbeiten
 # 3. Änderungen committen
-git add homepage.html
+git add index.html
 git commit -m "content: Vereins-Beschreibung aktualisiert"
 git push
 ```
@@ -226,12 +226,12 @@ git push
 ### Source Control Panel (`Ctrl + Shift + G`)
 
 **Projekt-spezifische Tipps:**
-- **Rote M**: Geänderte Dateien (z.B. homepage.html)
+- **Rote M**: Geänderte Dateien (z.B. index.html)
 - **Grüne U**: Neue Dateien (z.B. neue Sportart-Seite)
 - **Rote D**: Gelöschte Dateien
 
 ### Live Preview testen:
-1. Rechtsklick auf `homepage.html`
+1. Rechtsklick auf `index.html`
 2. "Open with Live Server" (Extension installiert?)
 3. Website im Browser testen
 4. Erst dann committen!
@@ -242,7 +242,7 @@ git push
 
 ```
 Web-Projekt/
-├── homepage.html           # Startseite
+├── index.html            # Startseite
 ├── shop.html              # Shop-Seite
 ├── Sportangebote.html     # Sportarten-Übersicht
 ├── Basketball1.html       # Basketball-Unterseite
@@ -357,7 +357,7 @@ git remote -v # Repository-URL prüfen
 ### Wer hat was geändert:
 ```bash
 git log --oneline --author="Name"  # Commits von bestimmter Person
-git blame homepage.html            # Wer hat welche Zeile geändert
+git blame index.html               # Wer hat welche Zeile geändert
 ```
 
 ---

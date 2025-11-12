@@ -226,6 +226,83 @@ main::before {
 /* =================================================
    5. HOMEPAGE STYLES - SV ENTE DESIGN
    ================================================= */
+
+/* Hero Banner with Image */
+.hero-banner {
+    position: relative;
+    width: 100%;
+    height: 600px;
+    background-image: url('Bilder/frontpageBild.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 4rem;
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+        135deg,
+        rgba(30, 86, 49, 0.75) 0%,
+        rgba(30, 86, 49, 0.6) 50%,
+        rgba(197, 165, 114, 0.5) 100%
+    );
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    color: white;
+    max-width: 800px;
+    padding: 2rem;
+}
+
+.hero-content h1 {
+    font-size: 3.5rem;
+    margin-bottom: 1.5rem;
+    color: white;
+    font-weight: 700;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+    line-height: 1.2;
+}
+
+.hero-content p {
+    font-size: 1.3rem;
+    color: white;
+    margin-bottom: 2rem;
+    font-weight: 400;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
+    line-height: 1.6;
+}
+
+.btn-hero {
+    background: linear-gradient(135deg, #c5a572 0%, #d4b890 100%);
+    color: #1e5631;
+    padding: 1rem 2.5rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border: 2px solid white;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.btn-hero:hover {
+    background: linear-gradient(135deg, #d4b890 0%, #e5c9a1 100%);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+}
+
+/* Old Hero Section (kept for other pages) */
 .hero {
     text-align: center;
     margin-bottom: 4rem;
@@ -442,16 +519,25 @@ main::before {
 
 .product-image {
     width: 100%;
-    height: 200px;
+    height: 250px;
     background: #f8f9fa;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #6c757d;
-    font-size: 2.5rem;
     position: relative;
     overflow: hidden;
     border-bottom: 1px solid #f1f3f4;
+}
+
+.product-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.product-card:hover .product-image img {
+    transform: scale(1.05);
 }
 
 .product-badge {
@@ -1167,6 +1253,20 @@ footer::before {
         justify-content: center;
     }
 
+    /* Hero Banner Responsive */
+    .hero-banner {
+        height: 450px;
+    }
+
+    .hero-content h1 {
+        font-size: 2.5rem;
+    }
+
+    .hero-content p {
+        font-size: 1.1rem;
+    }
+
+    /* Old Hero */
     .hero h1 {
         font-size: 2rem;
     }
@@ -1280,6 +1380,28 @@ footer::before {
     
     .logo {
         font-size: 1.5rem;
+    }
+
+    /* Hero Banner Mobile */
+    .hero-banner {
+        height: 350px;
+    }
+
+    .hero-content {
+        padding: 1rem;
+    }
+
+    .hero-content h1 {
+        font-size: 1.8rem;
+    }
+
+    .hero-content p {
+        font-size: 1rem;
+    }
+
+    .btn-hero {
+        padding: 0.8rem 1.8rem;
+        font-size: 1rem;
     }
     
     .shop-header {

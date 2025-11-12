@@ -25,7 +25,7 @@ git clone https://github.com/Ruekan/Web-Projekt.git
 cd Web-Projekt
 
 # Website öffnen
-# Öffne homepage.html in einem modernen Browser
+# Öffne index.html in einem modernen Browser
 ```
 
 ## Technologien

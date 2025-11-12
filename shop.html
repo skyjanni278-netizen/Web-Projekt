@@ -15,7 +15,7 @@
     <!-- Header -->
     <header>
         <div class="header-container">
-            <a href="homepage.html" class="logo">
+            <a href="index.html" class="logo">
                 <img src="Bilder/SvEnteHeidenheimLogo.png" alt="SV Ente Heidenheim Logo" class="logo-img">
                 <div class="logo-text">
                     <span class="logo-main">SV Ente</span>
@@ -24,9 +24,9 @@
             </a>
             <nav>
                 <ul>
-                    <li><a href="homepage.html">Home</a></li>
+                    <li><a href="index.html">Home</a></li>
                     <li><a href="newspage.html">News</a></li>
-                    <li><a href="shop.html" class="active">Shop</a></li>
+                    <li><a href="shop.html">Shop</a></li>
                     <li class="dropdown">
                         <a href="Sportangebote.html">Sportangebote</a>
                         <ul class="dropdown-menu">
@@ -89,7 +89,9 @@
             <div class="product-grid" id="productGrid">
                 <!-- Kleidung -->
                 <div class="product-card" data-category="kleidung" data-price="35">
-                    <div class="product-image">👕</div>
+                    <div class="product-image">
+                        <img src="Bilder/vereinsT-shirt.png" alt="Vereins T-Shirt Premium">
+                    </div>
                     <div class="product-badge new">Neu</div>
                     <div class="product-info">
                         <div class="product-category">Kleidung</div>
@@ -106,7 +108,9 @@
                 </div>
 
                 <div class="product-card" data-category="kleidung" data-price="65">
-                    <div class="product-image">🧥</div>
+                    <div class="product-image">
+                        <img src="Bilder/vereinsJacke.png" alt="Vereinsjacke Softshell">
+                    </div>
                     <div class="product-info">
                         <div class="product-category">Kleidung</div>
                         <h3 class="product-title">Vereinsjacke Softshell</h3>
@@ -122,16 +126,18 @@
                     </div>
                 </div>
 
-                <div class="product-card" data-category="kleidung" data-price="45">
-                    <div class="product-image">👔</div>
+                <div class="product-card" data-category="accessoires" data-price="18">
+                    <div class="product-image">
+                        <img src="Bilder/vereinsSchal.png" alt="Fanschal">
+                    </div>
                     <div class="product-badge sale">Sale</div>
                     <div class="product-info">
-                        <div class="product-category">Kleidung</div>
-                        <h3 class="product-title">Vereins Polo-Shirt</h3>
-                        <p class="product-description">Für die offiziellen Termine - sieht schick aus und fühlt sich gut an. Passt gut!</p>
+                        <div class="product-category">Accessoires</div>
+                        <h3 class="product-title">Fanschal</h3>
+                        <p class="product-description">Klassischer Fanschal in Vereinsfarben. Perfekt für kalte Spieltage und zum Anfeuern!</p>
                         <div class="product-price">
-                            <span class="price-current">45,00 €</span>
-                            <span class="price-old">55,00 €</span>
+                            <span class="price-current">18,00 €</span>
+                            <span class="price-old">22,00 €</span>
                         </div>
                         <div class="product-actions">
                             <button class="btn-primary">In den Warenkorb</button>
@@ -142,7 +148,9 @@
 
                 <!-- Accessoires -->
                 <div class="product-card" data-category="accessoires" data-price="15">
-                    <div class="product-image">🧢</div>
+                    <div class="product-image">
+                        <img src="Bilder/vereinsCap.png" alt="Baseball Cap">
+                    </div>
                     <div class="product-info">
                         <div class="product-category">Accessoires</div>
                         <h3 class="product-title">Baseball Cap</h3>
@@ -157,15 +165,35 @@
                     </div>
                 </div>
 
-                <div class="product-card" data-category="accessoires" data-price="25">
-                    <div class="product-image">🎒</div>
+                <div class="product-card" data-category="accessoires" data-price="45">
+                    <div class="product-image">
+                        <img src="Bilder/vereinsRucksack.png" alt="Sportrucksack">
+                    </div>
                     <div class="product-badge new">Neu</div>
                     <div class="product-info">
                         <div class="product-category">Accessoires</div>
                         <h3 class="product-title">Sportrucksack</h3>
                         <p class="product-description">Perfekt für Training und Vereinsausflüge. Hat genug Platz und die Träger sind wirklich angenehm.</p>
                         <div class="product-price">
-                            <span class="price-current">25,00 €</span>
+                            <span class="price-current">45,00 €</span>
+                        </div>
+                        <div class="product-actions">
+                            <button class="btn-primary">In den Warenkorb</button>
+                            <button class="btn-secondary">♡</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card" data-category="accessoires" data-price="38">
+                    <div class="product-image">
+                        <img src="Bilder/vereinsSporttasche.png" alt="Sporttasche">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">Accessoires</div>
+                        <h3 class="product-title">Sporttasche</h3>
+                        <p class="product-description">Geräumige Duffel-Bag für Training und Wettkämpfe. Robustes Material und praktische Aufteilung.</p>
+                        <div class="product-price">
+                            <span class="price-current">38,00 €</span>
                         </div>
                         <div class="product-actions">
                             <button class="btn-primary">In den Warenkorb</button>
@@ -175,24 +203,10 @@
                 </div>
 
                 <!-- Sport & Fitness -->
-                <div class="product-card" data-category="sport" data-price="85">
-                    <div class="product-image">⚽</div>
-                    <div class="product-info">
-                        <div class="product-category">Sport & Fitness</div>
-                        <h3 class="product-title">Premium Trainingsball</h3>
-                        <p class="product-description">Professioneller Trainingsball für alle Wetterbedingungen. FIFA-approved.</p>
-                        <div class="product-price">
-                            <span class="price-current">85,00 €</span>
-                        </div>
-                        <div class="product-actions">
-                            <button class="btn-primary">In den Warenkorb</button>
-                            <button class="btn-secondary">♡</button>
-                        </div>
-                    </div>
-                </div>
-
                 <div class="product-card" data-category="sport" data-price="12">
-                    <div class="product-image">💧</div>
+                    <div class="product-image">
+                        <img src="Bilder/vereinsTrinkflasche.png" alt="Trinkflasche">
+                    </div>
                     <div class="product-info">
                         <div class="product-category">Sport & Fitness</div>
                         <h3 class="product-title">Vereins Trinkflasche</h3>
@@ -207,32 +221,17 @@
                     </div>
                 </div>
 
-                <!-- Büro & Technik -->
-                <div class="product-card" data-category="buero" data-price="125">
-                    <div class="product-image">💻</div>
+                <div class="product-card" data-category="sport" data-price="20">
+                    <div class="product-image">
+                        <img src="Bilder/vereinsHandtuch.png" alt="Sporthandtuch">
+                    </div>
                     <div class="product-badge new">Neu</div>
                     <div class="product-info">
-                        <div class="product-category">Büro & Technik</div>
-                        <h3 class="product-title">Vereins Laptop-Tasche</h3>
-                        <p class="product-description">Gepolsterte Laptoptasche bis 15,6". Wasserabweisend mit zusätzlichen Fächern.</p>
+                        <div class="product-category">Sport & Fitness</div>
+                        <h3 class="product-title">Sporthandtuch</h3>
+                        <p class="product-description">Hochwertiges Mikrofaser-Handtuch mit Vereinslogo. Schnelltrocknend und super saugfähig.</p>
                         <div class="product-price">
-                            <span class="price-current">125,00 €</span>
-                        </div>
-                        <div class="product-actions">
-                            <button class="btn-primary">In den Warenkorb</button>
-                            <button class="btn-secondary">♡</button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="product-card" data-category="buero" data-price="8">
-                    <div class="product-image">✏️</div>
-                    <div class="product-info">
-                        <div class="product-category">Büro & Technik</div>
-                        <h3 class="product-title">Vereins Kugelschreiber Set</h3>
-                        <p class="product-description">Hochwertiges 3er-Set Kugelschreiber mit Gravur. Perfekt als Geschenk.</p>
-                        <div class="product-price">
-                            <span class="price-current">8,00 €</span>
+                            <span class="price-current">20,00 €</span>
                         </div>
                         <div class="product-actions">
                             <button class="btn-primary">In den Warenkorb</button>
