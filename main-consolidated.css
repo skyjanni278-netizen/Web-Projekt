@@ -430,6 +430,33 @@ main::before {
     transition: opacity 0.3s;
 }
 
+.card-meta {
+    display: none;
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 2px solid #c5a572;
+    gap: 1rem;
+    flex-direction: column;
+    transition: opacity 0.3s;
+}
+
+.card-author,
+.card-date {
+    font-size: 0.9rem;
+    color: #2d5a41;
+    font-weight: 500;
+}
+
+.card-author {
+    font-weight: 600;
+    color: #1e5631;
+}
+
+.card-date {
+    color: #c5a572;
+    font-style: italic;
+}
+
 .content-card:hover .card-image,
 .content-card:focus .card-image {
     display: none;
@@ -438,6 +465,11 @@ main::before {
 .content-card:hover .card-text,
 .content-card:focus .card-text {
     display: block;
+}
+
+.content-card:hover .card-meta,
+.content-card:focus .card-meta {
+    display: flex;
 }
 
 /* =================================================
