@@ -245,6 +245,12 @@ main {
     position: relative;
 }
 
+/* Kein oberes Padding für Seiten mit Hero Banner oder Bildbereich */
+main:has(.hero-banner),
+main:has(.bildbereich) {
+    padding-top: 0;
+}
+
 main::before {
     content: '';
     position: absolute;
@@ -880,11 +886,12 @@ main::before {
    ================================================= */
 .headline {
     text-align: center;
-    font-size: 2.8em;
+    font-size: clamp(1.8rem, 5vw, 2.8rem);
     color: #1e5631;
     font-weight: 700;
     margin-top: 40px;
     margin-bottom: 30px;
+    padding: 0 1rem;
     text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
     position: relative;
 }
@@ -900,11 +907,12 @@ main::before {
 }
 
 .karten-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 25px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
     padding: 20px;
+    max-width: 1400px;
+    margin: 0 auto;
 }
 
 .card {
@@ -912,7 +920,9 @@ main::before {
     border-radius: 15px;
     box-shadow: 0 8px 25px rgba(30, 86, 49, 0.15);
     overflow: hidden;
-    width: 320px;
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
     transition: all 0.3s ease;
     border: 2px solid transparent;
     position: relative;
@@ -982,8 +992,9 @@ main::before {
 .bildbereich {
     position: relative;
     width: 100%;
-    height: 100vh;
+    height: clamp(400px, 70vh, 100vh);
     overflow: hidden;
+    min-height: 400px;
 }
 
 .bildbereich img {
@@ -999,16 +1010,20 @@ main::before {
     left: 50%;
     transform: translate(-50%, -50%);
     color: white;
-    font-size: clamp(2rem, 8vw, 10rem);
     font-weight: bold;
     text-align: center;
+    width: 90%;
+    max-width: 1200px;
+    padding: 0 1rem;
 }
 
 .overlay-text h1 {
-    font-size: 240px;
+    font-size: clamp(3rem, 12vw, 15rem);
     color: #fff;
     font-weight: 600;
     transition: 0.5s;
+    margin-bottom: 1.5rem;
+    line-height: 1.1;
 }
 
 .overlay-text h1:hover {
@@ -1020,26 +1035,53 @@ main::before {
     text-decoration: none;
     display: inline-block;
     color: #fff;
-    font-size: 24px;
+    font-size: clamp(1rem, 2.5vw, 1.5rem);
     border: 2px solid #fff;
-    padding: 14px 70px;
+    padding: clamp(10px, 2vw, 14px) clamp(30px, 6vw, 70px);
     border-radius: 50px;
+    transition: all 0.3s ease;
+    margin-top: 1rem;
+}
+
+.overlay-text a:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    transform: scale(1.05);
 }
 
 .flex-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    padding: 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    padding: 40px 20px;
     background-color: #1e7e34;
+    max-width: 1600px;
+    margin: 0 auto;
 }
 
 .textfeld {
-    flex: 1;
     background-color: #f0f0f0;
-    border-radius: 8px;
-    padding: 20px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    padding: 30px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.textfeld:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+.textfeld h2 {
+    color: #1e5631;
+    font-size: clamp(1.3rem, 2.5vw, 1.8rem);
+    margin-bottom: 1rem;
+    font-weight: 700;
+}
+
+.textfeld p {
+    color: #333;
+    line-height: 1.7;
+    font-size: clamp(0.95rem, 1.5vw, 1.05rem);
 }
 
 .zentrierter-link {
@@ -1047,25 +1089,29 @@ main::before {
     display: flex;
     justify-content: center;
     background-color: #1e7e34;
+    padding: 2rem 1rem;
 }
 
 .mitglied-link {
     display: inline-block;
     margin: 30px auto;
-    padding: 12px 24px;
+    padding: clamp(10px, 2vw, 16px) clamp(30px, 5vw, 50px);
     background: linear-gradient(135deg, #28a745, #218838);
     color: white;
     text-decoration: none;
-    font-size: 1.2rem;
+    font-size: clamp(1rem, 2vw, 1.3rem);
     font-weight: bold;
     border-radius: 30px;
     box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-    transition: background 0.3s ease, transform 0.3s ease;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
 }
 
 .mitglied-link:hover {
     background: linear-gradient(135deg, #218838, #1e7e34);
-    transform: scale(1.05);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+    border-color: rgba(255, 255, 255, 0.3);
 }
 
 /* =================================================
@@ -1293,6 +1339,63 @@ footer::before {
    13. RESPONSIVE DESIGN
    ================================================= */
 
+/* Extra Large Screens (Desktop) */
+@media (min-width: 1400px) {
+    .karten-container {
+        grid-template-columns: repeat(3, 1fr);
+        max-width: 1600px;
+        gap: 40px;
+    }
+
+    .card {
+        max-width: 450px;
+    }
+
+    .card img {
+        height: 240px;
+    }
+}
+
+/* Large Screens */
+@media (min-width: 1200px) and (max-width: 1399px) {
+    .karten-container {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 35px;
+    }
+
+    .flex-container {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 35px;
+        padding: 50px 30px;
+    }
+
+    .bildbereich {
+        height: 85vh;
+    }
+}
+
+/* Medium Screens */
+@media (min-width: 900px) and (max-width: 1199px) {
+    .karten-container {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 30px;
+    }
+
+    .flex-container {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 25px;
+        padding: 40px 20px;
+    }
+
+    .bildbereich {
+        height: 70vh;
+    }
+
+    .overlay-text h1 {
+        font-size: clamp(4rem, 10vw, 8rem);
+    }
+}
+
 /* Tablet und kleine Laptops */
 @media (max-width: 1024px) {
     .container {
@@ -1394,30 +1497,92 @@ footer::before {
         padding: 1.5rem 0;
     }
 
-    /* Sportangebote responsive */
+    /* Sportangebote responsive - Tablets */
+    .karten-container {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 25px;
+        padding: 15px;
+    }
+
     .card {
-        width: 90%;
+        max-width: 100%;
+    }
+
+    .card img {
+        height: 180px;
+    }
+
+    .content {
+        padding: 20px;
     }
 
     .content h3 {
-        font-size: 20px;
+        font-size: 22px;
     }
 
     .content p {
-        font-size: 14px;
+        font-size: 15px;
     }
 
-    /* Untersport responsive */
+    /* Sportangebote Headline */
+    .headline {
+        margin-top: 30px;
+        margin-bottom: 25px;
+    }
+
+    .headline h1 {
+        font-size: clamp(2rem, 5vw, 2.5rem);
+    }
+
+    .headline::after {
+        width: 80px;
+    }
+
+    /* Sport-Detailseiten responsive */
     .flex-container {
         grid-template-columns: 1fr;
+        gap: 20px;
+        padding: 30px 15px;
+    }
+
+    .textfeld {
+        padding: 25px;
+    }
+
+    .bildbereich {
+        height: 60vh;
+        min-height: 400px;
+    }
+
+    .overlay-text h1 {
+        font-size: clamp(3rem, 8vw, 6rem);
+    }
+
+    .overlay-text a {
+        font-size: 1.1rem;
+        padding: 12px 40px;
     }
 }
 
 /* Mobile Phones */
 @media (max-width: 600px) {
     /* Sportangebote specific */
+    .karten-container {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        padding: 15px 10px;
+    }
+
     .card {
-        width: 90%;
+        max-width: 100%;
+    }
+
+    .card img {
+        height: 200px;
+    }
+
+    .content {
+        padding: 18px;
     }
 
     .content h3 {
@@ -1426,11 +1591,155 @@ footer::before {
 
     .content p {
         font-size: 14px;
+        line-height: 1.5;
+    }
+
+    /* Sportangebote Headline Mobile */
+    .headline {
+        margin-top: 25px;
+        margin-bottom: 20px;
+    }
+
+    .headline h1 {
+        font-size: clamp(1.8rem, 6vw, 2.2rem);
+    }
+
+    .headline::after {
+        width: 70px;
+    }
+
+    /* Sport-Detailseiten Mobile */
+    .flex-container {
+        padding: 20px 10px;
+        gap: 15px;
+    }
+
+    .textfeld {
+        padding: 20px;
+        border-radius: 10px;
+    }
+
+    .bildbereich {
+        height: 50vh;
+        min-height: 350px;
+    }
+
+    .overlay-text h1 {
+        font-size: clamp(2.5rem, 10vw, 4rem);
+        margin-bottom: 1rem;
+    }
+
+    .overlay-text a {
+        font-size: 1rem;
+        padding: 10px 30px;
+    }
+
+    .zentrierter-link {
+        padding: 1.5rem 0.5rem;
+    }
+
+    .mitglied-link {
+        margin: 20px auto;
+        font-size: 1.1rem;
     }
 
     /* Map responsive */
     #map { 
         height: 260px; 
+    }
+}
+
+/* Extra Small Phones (320px) */
+@media (max-width: 480px) {
+    .karten-container {
+        padding: 10px 5px;
+        gap: 15px;
+    }
+
+    .headline {
+        margin-top: 20px;
+        margin-bottom: 20px;
+        padding: 0 0.5rem;
+    }
+
+    .headline h1 {
+        font-size: clamp(1.5rem, 7vw, 2rem);
+        line-height: 1.2;
+    }
+
+    .headline::after {
+        width: 60px;
+        height: 3px;
+    }
+
+    .card {
+        border-radius: 12px;
+    }
+
+    .card img {
+        height: 180px;
+    }
+
+    .content {
+        padding: 15px;
+    }
+
+    .content h3 {
+        font-size: 18px;
+        letter-spacing: 0.3px;
+    }
+
+    .content h2 {
+        font-size: 18px;
+    }
+
+    .content p {
+        font-size: 13px;
+        line-height: 1.4;
+    }
+
+    .card:hover {
+        transform: translateY(-4px);
+    }
+
+    /* Sport-Detailseiten Extra Small */
+    .flex-container {
+        padding: 15px 8px;
+        gap: 12px;
+    }
+
+    .textfeld {
+        padding: 15px;
+    }
+
+    .textfeld h2 {
+        font-size: 1.2rem;
+        margin-bottom: 0.8rem;
+    }
+
+    .textfeld p {
+        font-size: 0.9rem;
+        line-height: 1.6;
+    }
+
+    .bildbereich {
+        height: 40vh;
+        min-height: 300px;
+    }
+
+    .overlay-text h1 {
+        font-size: clamp(2rem, 12vw, 3rem);
+        margin-bottom: 0.8rem;
+    }
+
+    .overlay-text a {
+        font-size: 0.9rem;
+        padding: 8px 20px;
+    }
+
+    .mitglied-link {
+        font-size: 1rem;
+        padding: 10px 25px;
     }
 }
 
