@@ -5,7 +5,7 @@ Webprojekt für den Studiengang Wirtschaftsinformatik an der DHBW Heidenheim.
 ## Projektübersicht
 
 Für dieses Projekt haben wir eine Website für den fiktiven Sportverein „SV Ente Heidenheim“ entwickelt. Die Seite stellt alle wichtigen Informationen rund um den Verein bereit – von Sportangeboten bis zum Shop.  
-Wichtig war uns, dass die Seite übersichtlich, barrierearm und auf verschiedenen Geräten gut nutzbar ist. Da das Projekt ohne Backend und ohne JavaScript umgesetzt werden sollte, mussten viele Funktionen rein über HTML und CSS gelöst werden.
+Wichtig war uns, dass die Seite übersichtlich, barrierearm und auf verschiedenen Geräten gut nutzbar ist.
 
 Die Seite umfasst 11 HTML-Seiten mit unterschiedlichen Layout- und Inhaltsbereichen.
 
@@ -155,15 +155,15 @@ Eine echte Filterlogik würde JavaScript erfordern.
 
 # Testhinweise
 
-## Responsiveness testen
+## Responsiveness getestet
 - Browser DevTools verwenden (Geräteansicht)  
 - Wichtige Seiten testen: Startseite, Shop, Formulare  
 - Typische Testbreiten: **320px**, **480px**, **768px**, **1024px**
 
-## Barrierefreiheit testen
+## Barrierefreiheit getestet
 - Navigation per **Tab-Taste**  
-- Skip-Link ausprobieren  
-- Fokus-Markierungen beachten  
+- Skip-Link ausprobieret  
+- Fokus-Markierungen  
 
 ## Bildquellen
 Alle verwendeten Bilder wurden selbst bzw. KI-basiert erzeugt.
