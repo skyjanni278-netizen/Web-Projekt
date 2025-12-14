@@ -170,6 +170,6 @@ Alle verwendeten Bilder wurden selbst bzw. KI-basiert erzeugt.
 
 ## Autoren
 Peter Lang (Matrikelnummer: 8613964)  
-Janek  
-Lukas  
-Tarek  
+Janek Frank (Matrikelnummer: 5607006)
+Lukas Reiser (Matrikelnummer: 5527863)
+Tarek Kadu Turkmani (Matrikelnummer: 1650970)
