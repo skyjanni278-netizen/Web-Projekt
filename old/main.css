@@ -427,6 +427,7 @@ main::before {
 .card-image {
     width: 100%;
     aspect-ratio: 16/9;
+    height: 220px;
     object-fit: cover;
     display: block;
     transition: opacity 0.3s;

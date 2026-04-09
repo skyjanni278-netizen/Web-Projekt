@@ -17,33 +17,33 @@ function write(relPath, content) {
 
 const globalCss = [
   '/* Global shared styles (auto-generated from main.css) */',
-  sliceInclusive(1, 270),
-  sliceInclusive(349, 374),
-  sliceInclusive(375, 480),
-  sliceInclusive(1122, 1172),
-  sliceInclusive(1230, 1295),
-  sliceInclusive(1715, 2489)
+  sliceInclusive(1, 271),
+  sliceInclusive(350, 375),
+  sliceInclusive(376, 481),
+  sliceInclusive(1123, 1173),
+  sliceInclusive(1231, 1296),
+  sliceInclusive(1716, 2490)
 ].join('\n\n');
 
 const homeCss = [
   '/* Home page styles (auto-generated from main.css) */',
-  sliceInclusive(270, 348)
+  sliceInclusive(271, 349)
 ].join('\n\n');
 
 const shopCss = [
   '/* Shop page styles (auto-generated from main.css) */',
-  sliceInclusive(211, 237),
-  sliceInclusive(481, 883)
+  sliceInclusive(212, 238),
+  sliceInclusive(482, 884)
 ].join('\n\n');
 
 const sportangeboteCss = [
   '/* Sportangebote page styles (auto-generated from main.css) */',
-  sliceInclusive(884, 993)
+  sliceInclusive(885, 994)
 ].join('\n\n');
 
 const sportDetailCss = [
   '/* Sport detail styles (auto-generated from main.css) */',
-  sliceInclusive(994, 1121)
+  sliceInclusive(995, 1122)
 ].join('\n\n');
 
 const newsCss = [
@@ -52,12 +52,12 @@ const newsCss = [
 
 const kontaktCss = [
   '/* Kontakt page styles (auto-generated from main.css) */',
-  sliceInclusive(1173, 1229)
+  sliceInclusive(1174, 1230)
 ].join('\n\n');
 
 const mitgliedschaftCss = [
   '/* Mitgliedschaft page styles (auto-generated from main.css) */',
-  sliceInclusive(1295, 1714)
+  sliceInclusive(1296, 1715)
 ].join('\n\n');
 
 write('src/styles.css', globalCss);
