@@ -1,0 +1,49 @@
+.artikel-bild {
+  width: 100%;
+  max-height: 420px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin: 1.5rem 0 2rem;
+  display: block;
+}
+
+.artikel-header {
+  margin-bottom: 1rem;
+}
+
+.artikel-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 0.75rem;
+}
+
+.artikel-tag {
+  font-size: 0.8rem;
+  background: rgba(197, 165, 114, 0.25);
+  color: #2c3e50;
+  border-radius: 10px;
+  padding: 0.2rem 0.7rem;
+  border: 1px solid rgba(197, 165, 114, 0.5);
+}
+
+.artikel-back {
+  margin-top: 2.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid #dee2e6;
+}
+
+.not-found {
+  text-align: center;
+  padding: 4rem 1rem;
+}
+
+.not-found h1 {
+  color: #1e5631;
+  margin-bottom: 1rem;
+}
+
+.not-found p {
+  color: #6c757d;
+  margin-bottom: 2rem;
+}
