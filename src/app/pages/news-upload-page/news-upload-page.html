@@ -1,0 +1,202 @@
+
+    <!-- DHBW Project Banner -->
+    <aside class="dhbw-banner" role="complementary" aria-label="Projekt-Information">
+        Dies ist eine Projektseite der <a href="https://www.dhbw-heidenheim.de/" target="_blank">DHBW Heidenheim</a> - Studiengang Wirtschaftsinformatik
+    </aside>
+
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <a routerLink="/" class="logo">
+                <img src="/Bilder/SvEnteHeidenheimLogo.png" alt="SV Ente Heidenheim Logo" class="logo-img">
+                <div class="logo-text">
+                    <span class="logo-main">SV Ente</span>
+                    <span class="logo-sub">Heidenheim</span>
+                </div>
+            </a>
+            <nav>
+                <ul>
+                    <li><a routerLink="/">Home</a></li>
+                    <li><a routerLink="/news">News</a></li>
+                    <li><a routerLink="/shop">Shop</a></li>
+                    <li class="dropdown">
+                        <a routerLink="/sportangebote">Sportangebote</a>
+                        <ul class="dropdown-menu">
+                            <li><a routerLink="/sportangebote/fussball">Fußball</a></li>
+                            <li><a routerLink="/sportangebote/handball">Handball</a></li>
+                            <li><a routerLink="/sportangebote/basketball">Basketball</a></li>
+                        </ul>
+                    </li>
+                    <li><a routerLink="/mitgliedschaft">Mitgliedschaft</a></li>
+                    <li><a routerLink="/kontakt">Kontakt</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main id="main-content">
+        <div class="container">
+            <section class="hero">
+                <h1>Neuen Artikel schreiben</h1>
+                <p>Nur für den Nachrichtenbeauftragten des Vereins.</p>
+            </section>
+
+            <!-- PIN-Abfrage -->
+            <div class="pin-box" *ngIf="!pinEntered()">
+                <h2>Redakteur-Zugang</h2>
+                <p>Bitte gib deinen PIN ein, um fortzufahren.</p>
+                <div class="pin-form">
+                    <input
+                        type="password"
+                        [(ngModel)]="pinInput"
+                        [ngModelOptions]="{ standalone: true }"
+                        placeholder="PIN eingeben"
+                        class="pin-input"
+                        (keyup.enter)="checkPin()"
+                        maxlength="10"
+                        aria-label="Redakteur PIN">
+                    <button class="btn btn-pin" type="button" (click)="checkPin()">Bestätigen</button>
+                </div>
+                <p class="pin-error" *ngIf="pinError()">Falscher PIN. Bitte erneut versuchen.</p>
+                <a routerLink="/news" class="back-link">← Zurück zur Newsübersicht</a>
+            </div>
+
+            <!-- Erfolgsmeldung -->
+            <div class="success-box" *ngIf="submitted()">
+                <div class="success-icon">✓</div>
+                <h2>Artikel veröffentlicht!</h2>
+                <p>Du wirst in Kürze zur Newsübersicht weitergeleitet...</p>
+            </div>
+
+            <!-- Upload-Formular -->
+            <form
+                *ngIf="pinEntered() && !submitted()"
+                [formGroup]="form"
+                (ngSubmit)="submit()"
+                class="upload-form"
+                novalidate>
+
+                <!-- Titel -->
+                <div class="form-group" [ngClass]="{ error: titleInvalid }">
+                    <label for="title">Titel *</label>
+                    <input
+                        id="title"
+                        type="text"
+                        formControlName="title"
+                        placeholder="Artikeltitel eingeben">
+                    <span class="error-msg" *ngIf="titleInvalid">Bitte einen Titel eingeben.</span>
+                </div>
+
+                <!-- Autor -->
+                <div class="form-group" [ngClass]="{ error: authorInvalid }">
+                    <label for="author">Autor *</label>
+                    <input
+                        id="author"
+                        type="text"
+                        formControlName="author"
+                        placeholder="Vor- und Nachname">
+                    <span class="error-msg" *ngIf="authorInvalid">Bitte einen Autor angeben.</span>
+                </div>
+
+                <!-- Datum -->
+                <div class="form-group" [ngClass]="{ error: dateInvalid }">
+                    <label for="date">Datum *</label>
+                    <input
+                        id="date"
+                        type="date"
+                        formControlName="date">
+                    <span class="error-msg" *ngIf="dateInvalid">Bitte ein Datum auswählen.</span>
+                </div>
+
+                <!-- Kategorien -->
+                <div class="form-group">
+                    <label>Kategorien</label>
+                    <div class="tags-select">
+                        <button
+                            *ngFor="let tag of ALL_TAGS"
+                            type="button"
+                            class="tag-toggle"
+                            [ngClass]="{ active: hasTag(tag) }"
+                            (click)="toggleTag(tag)">
+                            {{ tag }}
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Kurzbeschreibung -->
+                <div class="form-group" [ngClass]="{ error: excerptInvalid }">
+                    <label for="excerpt">Kurzbeschreibung * <span class="hint">(max. 300 Zeichen, erscheint auf der Übersichtsseite)</span></label>
+                    <textarea
+                        id="excerpt"
+                        formControlName="excerpt"
+                        rows="3"
+                        placeholder="Kurze Zusammenfassung des Artikels..."></textarea>
+                    <span class="error-msg" *ngIf="excerptInvalid">Bitte eine Kurzbeschreibung eingeben.</span>
+                </div>
+
+                <!-- Artikeltext -->
+                <div class="form-group" [ngClass]="{ error: contentInvalid }">
+                    <label for="content">Artikeltext * <span class="hint">(Absätze durch eine Leerzeile trennen)</span></label>
+                    <textarea
+                        id="content"
+                        formControlName="content"
+                        rows="12"
+                        placeholder="Hier den vollständigen Artikel schreiben...&#10;&#10;Neuer Absatz wird durch eine Leerzeile getrennt."></textarea>
+                    <span class="error-msg" *ngIf="contentInvalid">Bitte einen Artikeltext eingeben.</span>
+                </div>
+
+                <!-- Bildpfad -->
+                <div class="form-group">
+                    <label for="image">Bildpfad <span class="hint">(optional, z.B. /Bilder/Jugendbild.png)</span></label>
+                    <input
+                        id="image"
+                        type="text"
+                        formControlName="image"
+                        placeholder="/Bilder/meinBild.png">
+                </div>
+
+                <!-- Buttons -->
+                <div class="form-actions">
+                    <a routerLink="/news" class="btn btn-secondary">Abbrechen</a>
+                    <button type="submit" class="btn btn-submit">Artikel veröffentlichen</button>
+                </div>
+            </form>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Kontakt</h3>
+                    <p>SV Ente Heidenheim<br>
+                       Marienstraße 20<br>
+                       89518 Heidenheim an der Brenz<br>
+                       Tel: +49 123 456789<br>
+                       Email: info@sv-ente.de</p>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Schnelle Links</h3>
+                    <p><a href="#">Impressum</a><br>
+                       <a href="#">Datenschutz</a><br>
+                       <a href="#">Satzung</a><br>
+                       <a href="#">Vorstand</a><br>
+                       <a href="#">Newsletter</a></p>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Folgen Sie uns</h3>
+                    <p><a href="#">Facebook</a><br>
+                       <a href="#">Instagram</a><br>
+                       <a href="#">Twitter</a><br>
+                       <a href="#">LinkedIn</a></p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 SV Ente Heidenheim. Alle Rechte vorbehalten.</p>
+            </div>
+        </div>
+    </footer>
