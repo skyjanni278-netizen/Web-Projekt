@@ -1,5 +1,6 @@
 ﻿import { Routes } from '@angular/router';
 import { BasketballPage } from './pages/basketball-page/basketball-page';
+import { CartPage } from './pages/cart-page/cart-page';
 import { FussballPage } from './pages/fussball-page/fussball-page';
 import { HandballPage } from './pages/handball-page/handball-page';
 import { HomePage } from './pages/home-page/home-page';
@@ -15,6 +16,8 @@ export const routes: Routes = [
   { path: 'news', component: NewsPage },
   { path: 'news/eins', component: NewsOnePage },
   { path: 'shop', component: ShopPage },
+  { path: 'warenkorb', component: CartPage },
+  { path: 'cart', redirectTo: 'warenkorb' },
   { path: 'sportangebote', component: SportangebotePage },
   { path: 'sportangebote/fussball', component: FussballPage },
   { path: 'sportangebote/handball', component: HandballPage },

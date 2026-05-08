@@ -193,3 +193,35 @@ Die Shopseite wurde gegenüber der Semester-1-Version funktional erweitert. Der b
 ### Mehrwert
 Das Feature löst ein echtes Nutzerproblem: Besucher finden bei wachsendem Sortiment schneller passende Produkte statt nur statische Karten zu durchsuchen.
 
+## Erweiterung: Warenkorb mit localStorage
+
+Die Shopseite wurde um einen interaktiven Warenkorb erweitert. Nutzer koennen Produkte vormerken, Mengen anpassen und eine Gesamtsumme berechnen lassen.
+
+### Feature-Beschreibung
+- Produkte lassen sich direkt im Shop zum Warenkorb hinzufuegen
+- Eigene Warenkorbseite unter `/warenkorb` (Alias: `/cart`)
+- Warenkorb bleibt per `localStorage` nach Reload erhalten
+- Mengen koennen erhoeht, verringert oder entfernt werden
+- Bei Menge `0` wird ein Produkt automatisch entfernt
+- Zwischensumme pro Position, Gesamtsumme und Gesamtanzahl werden angezeigt
+- Button zum Leeren des kompletten Warenkorbs
+- Empty State bei leerem Warenkorb
+
+### Technischer Aufbau
+- Component-Struktur: `ShopPage` (Produktliste + Add-to-Cart), `CartPage` (Warenkorbverwaltung), `ShopProductGrid` (Add-to-Cart Event)
+- Data Layer: `cart.models.ts` (Typen), `cart.service.ts` (Storage, Validierung, Reconciliation, Summen)
+- Fehlerbehandlung: ungueltige localStorage-Daten werden zurueckgesetzt, nicht mehr verfuegbare Produkte werden entfernt
+
+### Startanleitung
+```bash
+npm install
+npm start
+```
+
+### Testanleitung
+```bash
+npm test -- --watch=false
+```
+
+### Mehrwert (Kurzbegruendung)
+Im Unterschied zur statischen Seite koennen Nutzer jetzt aktiv Artikel sammeln, Mengen pruefen und Kosten einschaetzen. Das macht den Shop fuer Vereinsmitglieder und Eltern praktisch nutzbar.

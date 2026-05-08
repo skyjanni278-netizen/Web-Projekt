@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { ShopProduct } from '../../data/shop.models';
 
 @Component({
@@ -9,6 +9,7 @@ import { ShopProduct } from '../../data/shop.models';
 export class ShopProductGrid {
   @Input({ required: true }) products: ShopProduct[] = [];
   @Input() showEmptyState = false;
+  @Output() addToCart = new EventEmitter<string>();
 
   protected formatPrice(price: number): string {
     return new Intl.NumberFormat('de-DE', {
@@ -39,5 +40,9 @@ export class ShopProductGrid {
     }
 
     return 'Sport & Fitness';
+  }
+
+  protected onAddToCart(productId: string): void {
+    this.addToCart.emit(productId);
   }
 }

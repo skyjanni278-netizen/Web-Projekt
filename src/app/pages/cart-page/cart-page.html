@@ -1,0 +1,158 @@
+<!-- Skip to Content Link -->
+<a href="#main-content" class="skip-link">Zum Hauptinhalt springen</a>
+
+<!-- DHBW Project Banner -->
+<aside class="dhbw-banner" role="complementary" aria-label="Projekt-Information">
+  Dies ist eine Projektseite der
+  <a href="https://www.dhbw-heidenheim.de/" target="_blank">DHBW Heidenheim</a>
+  - Studiengang Wirtschaftsinformatik
+</aside>
+
+<!-- Header -->
+<header>
+  <div class="header-container">
+    <a routerLink="/" class="logo">
+      <img src="/Bilder/SvEnteHeidenheimLogo.png" alt="SV Ente Heidenheim Logo" class="logo-img" />
+      <div class="logo-text">
+        <span class="logo-main">SV Ente</span>
+        <span class="logo-sub">Heidenheim</span>
+      </div>
+    </a>
+    <nav>
+      <ul>
+        <li><a routerLink="/">Home</a></li>
+        <li><a routerLink="/news">News</a></li>
+        <li><a routerLink="/shop">Shop</a></li>
+        <li class="dropdown">
+          <a routerLink="/sportangebote">Sportangebote</a>
+          <ul class="dropdown-menu">
+            <li><a routerLink="/sportangebote/fussball">Fussball</a></li>
+            <li><a routerLink="/sportangebote/handball">Handball</a></li>
+            <li><a routerLink="/sportangebote/basketball">Basketball</a></li>
+          </ul>
+        </li>
+        <li><a routerLink="/mitgliedschaft">Mitgliedschaft</a></li>
+        <li><a routerLink="/kontakt">Kontakt</a></li>
+      </ul>
+    </nav>
+    <a routerLink="/warenkorb" class="cart-icon cart-link" aria-label="Zum Warenkorb">
+      🛒 Warenkorb
+      <span class="cart-count">{{ itemCount() }}</span>
+    </a>
+  </div>
+</header>
+
+<!-- Main Content -->
+<main id="main-content">
+  <div class="container">
+    <section class="shop-header">
+      <h1>Warenkorb</h1>
+      <p>Sie koennen hier Artikel verwalten, Mengen anpassen und die Gesamtkosten einsehen.</p>
+    </section>
+
+    @if (warning()) {
+      <div class="cart-warning" role="status">
+        <span>{{ warning() }}</span>
+        <button type="button" (click)="clearWarning()">Hinweis ausblenden</button>
+      </div>
+    }
+
+    @if (entries().length === 0) {
+      <div class="empty-state cart-empty">
+        <h3>Ihr Warenkorb ist leer</h3>
+        <p>Fuegen Sie Artikel aus dem Shop hinzu, um mit der Vormerkung zu starten.</p>
+        <a routerLink="/shop" class="btn-primary cart-back-link">Zum Shop</a>
+      </div>
+    } @else {
+      <section class="cart-list" aria-label="Warenkorb Positionen">
+        @for (entry of entries(); track entry.product.id) {
+          <article class="cart-row">
+            <div class="cart-row-image">
+              <img [src]="entry.product.imageUrl" [alt]="entry.product.imageAlt" />
+            </div>
+            <div class="cart-row-main">
+              <h2>{{ entry.product.name }}</h2>
+              <p>{{ entry.product.description }}</p>
+              <p class="cart-price">Einzelpreis: {{ formatPrice(entry.product.price) }}</p>
+            </div>
+            <div class="cart-row-qty">
+              <button type="button" (click)="decrease(entry.product.id)" aria-label="Menge verringern">-</button>
+              <span>{{ entry.quantity }}</span>
+              <button type="button" (click)="increase(entry.product.id)" aria-label="Menge erhoehen">+</button>
+            </div>
+            <div class="cart-row-subtotal">
+              <span>Zwischensumme</span>
+              <strong>{{ formatPrice(entry.subtotal) }}</strong>
+            </div>
+            <button
+              class="cart-remove-btn"
+              type="button"
+              (click)="remove(entry.product.id)"
+              aria-label="Produkt entfernen"
+            >
+              Entfernen
+            </button>
+          </article>
+        }
+      </section>
+
+      <section class="cart-summary" aria-label="Warenkorb Zusammenfassung">
+        <div>
+          <span>Artikel gesamt:</span>
+          <strong>{{ itemCount() }}</strong>
+        </div>
+        <div>
+          <span>Gesamtsumme:</span>
+          <strong>{{ formatPrice(totalPrice()) }}</strong>
+        </div>
+        <div class="cart-summary-actions">
+          <button type="button" class="btn-primary" (click)="clear()">Warenkorb leeren</button>
+          <a routerLink="/shop" class="btn-secondary cart-back-link">Weiter einkaufen</a>
+        </div>
+      </section>
+    }
+  </div>
+</main>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-container">
+    <div class="footer-content">
+      <div class="footer-section">
+        <h3>Kontakt</h3>
+        <p>
+          SV Ente Heidenheim<br />
+          Marienstrasse 20<br />
+          89518 Heidenheim an der Brenz<br />
+          Tel: +49 123 456789<br />
+          Email: info@sv-ente.de
+        </p>
+      </div>
+
+      <div class="footer-section">
+        <h3>Shop Info</h3>
+        <p>
+          <a href="#">Versandkosten</a><br />
+          <a href="#">Rueckgabe</a><br />
+          <a href="#">Groessentabelle</a><br />
+          <a href="#">AGB Shop</a><br />
+          <a href="#">Widerrufsrecht</a>
+        </p>
+      </div>
+
+      <div class="footer-section">
+        <h3>Service</h3>
+        <p>
+          <a href="#">FAQ</a><br />
+          <a href="#">Bestellstatus</a><br />
+          <a href="#">Kundenservice</a><br />
+          <a href="#">Newsletter</a>
+        </p>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; 2025 SV Ente Heidenheim. Alle Rechte vorbehalten.</p>
+    </div>
+  </div>
+</footer>

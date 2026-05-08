@@ -22,6 +22,7 @@ import {
   sanitizeFilterState
 } from './data/shop.service';
 import { PriceRange, ProductCategory, ProductSize, ShopFilterState, ShopProduct } from './data/shop.models';
+import { CartService } from './data/cart.service';
 
 @Component({
   selector: 'app-shop-page',
@@ -38,10 +39,12 @@ export class ShopPage {
   protected readonly filters = signal<ShopFilterState>(DEFAULT_SHOP_FILTERS);
   protected readonly filteredProducts = computed(() => applyShopFilters(this.allProducts(), this.filters()));
   protected readonly hasActiveFilters = computed(() => hasActiveShopFilters(this.filters()));
+  protected readonly cartItemCount = computed(() => this.cartService.itemCount());
 
   private readonly route = inject(ActivatedRoute);
   private readonly router = inject(Router);
   private readonly destroyRef = inject(DestroyRef);
+  private readonly cartService = inject(CartService);
   private readonly allProducts = signal<ShopProduct[]>([]);
 
   constructor() {
@@ -78,6 +81,10 @@ export class ShopPage {
 
   protected onResetFilters(): void {
     this.updateFilters(DEFAULT_SHOP_FILTERS);
+  }
+
+  protected onAddToCart(productId: string): void {
+    this.cartService.addItem(productId, 1);
   }
 
   private updateFilters(partialFilters: Partial<ShopFilterState>): void {
