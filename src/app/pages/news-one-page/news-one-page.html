@@ -36,24 +36,82 @@
 
     <!-- Main Content -->
     <main>
-        <article class="artikel">
-            <header>
-                <h1>Jugendabteilung startet mit neuem Trainingskonzept in die Saison</h1>
-                <div class="artikel-meta">Von <span class="meta-author">Redaktion Muster</span> | 15. Oktober 2025</div>
-            </header>
-            <section>
-                <p>Mit viel Motivation und frischen Ideen startet die Jugendabteilung des Vereins in die neue Saison. Im Mittelpunkt steht ein innovatives Trainingskonzept, das nicht nur die sportliche Entwicklung der jungen Talente fördern soll, sondern auch deren persönliche Entfaltung.</p>
-                <p><em>„Unser Ziel ist es, die Kinder und Jugendlichen ganzheitlich zu fördern“,</em> erklärt Jugendleiterin Lisa Berger. <em>„Neben Technik und Taktik legen wir großen Wert auf Teamgeist, Fairness und Spaß am Spiel.“</em></p>
-                <ul class="artikel-list">
-                    <li><strong>Individuelle Förderung:</strong> Jeder Spieler erhält gezielte Trainingsimpulse, abgestimmt auf seine Stärken und Entwicklungsfelder.</li>
-                    <li><strong>Moderne Trainingsmethoden:</strong> Mit digitalen Tools, Videoanalysen und altersgerechten Übungen wird das Training abwechslungsreicher und effektiver gestaltet.</li>
-                    <li><strong>Mentale und soziale Entwicklung:</strong> Workshops zu Themen wie Motivation, Konfliktlösung und gesunde Ernährung ergänzen das sportliche Programm.</li>
-                </ul>
-                <p>Besonders stolz ist die Abteilung auf die enge Zusammenarbeit mit erfahrenen Trainern und Pädagogen. <em>„Wir wollen mehr sein als nur ein Fußballverein – wir wollen ein Ort sein, an dem junge Menschen wachsen können“,</em> so Berger.</p>
-                <p>Die ersten Trainingseinheiten zeigen bereits Wirkung: Die Jugendlichen sind mit Begeisterung dabei, die Stimmung ist positiv, und auch die Eltern zeigen sich beeindruckt vom neuen Ansatz.</p>
-                <p>Mit dem neuen Trainingskonzept setzt die Jugendabteilung ein starkes Zeichen für die Zukunft – und beweist, dass moderne Nachwuchsarbeit weit über das Spielfeld hinausgeht.</p>
+        <ng-container *ngIf="article() as a; else notFound">
+            <article class="artikel">
+                <div class="artikel-header">
+                    <h1>{{ a.title }}</h1>
+                    <div class="artikel-meta">
+                        Von <span class="meta-author">{{ a.author }}</span> | {{ formatDate(a.date) }}
+                    </div>
+                    <div class="artikel-tags" *ngIf="a.tags.length > 0">
+                        <span *ngFor="let tag of a.tags" class="artikel-tag">{{ tag }}</span>
+                    </div>
+                </div>
+                <img [src]="a.image" [alt]="a.imageAlt" class="artikel-bild">
+                <div [innerHTML]="a.content"></div>
+                <div class="artikel-back">
+                    <a routerLink="/news" class="btn">Zurueck zur Uebersicht</a>
+                </div>
+            </article>
+
+            <!-- Kommentarsektion -->
+            <section class="kommentare" aria-label="Kommentare">
+                <h2 class="kommentare-titel">Kommentare ({{ comments().length }})</h2>
+
+                <!-- Bestehende Kommentare -->
+                <div class="kommentar-liste" *ngIf="comments().length > 0">
+                    <div *ngFor="let c of comments()" class="kommentar-karte">
+                        <div class="kommentar-kopf">
+                            <span class="kommentar-autor">{{ c.author }}</span>
+                            <span class="kommentar-datum">{{ formatDate(c.date) }}</span>
+                        </div>
+                        <p class="kommentar-text">{{ c.text }}</p>
+                    </div>
+                </div>
+                <p *ngIf="comments().length === 0" class="kommentar-leer">
+                    Noch keine Kommentare. Sei der Erste!
+                </p>
+
+                <!-- Kommentar-Formular -->
+                <div class="kommentar-formular">
+                    <h3>Kommentar schreiben</h3>
+                    <div class="kommentar-erfolg" *ngIf="commentSubmitted()">
+                        Dein Kommentar wurde gespeichert!
+                    </div>
+                    <div class="kommentar-fehler" *ngIf="commentError()">
+                        {{ commentError() }}
+                    </div>
+                    <div class="formular-gruppe">
+                        <label for="kommentar-name">Name *</label>
+                        <input
+                            type="text"
+                            id="kommentar-name"
+                            [(ngModel)]="commentAuthor"
+                            placeholder="Dein Name"
+                            maxlength="60">
+                    </div>
+                    <div class="formular-gruppe">
+                        <label for="kommentar-text">Kommentar *</label>
+                        <textarea
+                            id="kommentar-text"
+                            [(ngModel)]="commentText"
+                            rows="4"
+                            placeholder="Deine Meinung zum Artikel..."
+                            maxlength="500"></textarea>
+                    </div>
+                    <button type="button" class="btn-kommentar" (click)="submitComment()">
+                        Kommentar abschicken
+                    </button>
+                </div>
             </section>
-        </article>
+        </ng-container>
+        <ng-template #notFound>
+            <div class="not-found">
+                <h1>Artikel nicht gefunden</h1>
+                <p>Der gesuchte Artikel existiert nicht.</p>
+                <a routerLink="/news" class="btn">Zur Newsseite</a>
+            </div>
+        </ng-template>
     </main>
 
     <!-- Footer -->
@@ -63,12 +121,11 @@
                 <div class="footer-section">
                     <h3>Kontakt</h3>
                     <p>SV Ente Heidenheim<br>
-                       Marienstraße 20<br>
+                       Marienstrasse 20<br>
                        89518 Heidenheim an der Brenz<br>
                        Tel: +49 123 456789<br>
                        Email: info@sv-ente.de</p>
                 </div>
-
                 <div class="footer-section">
                     <h3>Schnelle Links</h3>
                     <p><a href="#">Impressum</a><br>
@@ -77,7 +134,6 @@
                        <a href="#">Vorstand</a><br>
                        <a href="#">Newsletter</a></p>
                 </div>
-
                 <div class="footer-section">
                     <h3>Folgen Sie uns</h3>
                     <p><a href="#">Facebook</a><br>
@@ -86,7 +142,6 @@
                        <a href="#">LinkedIn</a></p>
                 </div>
             </div>
-
             <div class="footer-bottom">
                 <p>&copy; 2025 SV Ente Heidenheim. Alle Rechte vorbehalten.</p>
             </div>
