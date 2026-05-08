@@ -1,3 +1,11 @@
+export interface Comment {
+  id: string;
+  articleSlug: string;
+  author: string;
+  text: string;
+  date: string; // ISO: "2025-11-05"
+}
+
 export interface Article {
   id: string;
   slug: string;

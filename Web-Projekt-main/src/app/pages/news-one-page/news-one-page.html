@@ -53,6 +53,57 @@
                     <a routerLink="/news" class="btn">Zurueck zur Uebersicht</a>
                 </div>
             </article>
+
+            <!-- Kommentarsektion -->
+            <section class="kommentare" aria-label="Kommentare">
+                <h2 class="kommentare-titel">Kommentare ({{ comments().length }})</h2>
+
+                <!-- Bestehende Kommentare -->
+                <div class="kommentar-liste" *ngIf="comments().length > 0">
+                    <div *ngFor="let c of comments()" class="kommentar-karte">
+                        <div class="kommentar-kopf">
+                            <span class="kommentar-autor">{{ c.author }}</span>
+                            <span class="kommentar-datum">{{ formatDate(c.date) }}</span>
+                        </div>
+                        <p class="kommentar-text">{{ c.text }}</p>
+                    </div>
+                </div>
+                <p *ngIf="comments().length === 0" class="kommentar-leer">
+                    Noch keine Kommentare. Sei der Erste!
+                </p>
+
+                <!-- Kommentar-Formular -->
+                <div class="kommentar-formular">
+                    <h3>Kommentar schreiben</h3>
+                    <div class="kommentar-erfolg" *ngIf="commentSubmitted()">
+                        Dein Kommentar wurde gespeichert!
+                    </div>
+                    <div class="kommentar-fehler" *ngIf="commentError()">
+                        {{ commentError() }}
+                    </div>
+                    <div class="formular-gruppe">
+                        <label for="kommentar-name">Name *</label>
+                        <input
+                            type="text"
+                            id="kommentar-name"
+                            [(ngModel)]="commentAuthor"
+                            placeholder="Dein Name"
+                            maxlength="60">
+                    </div>
+                    <div class="formular-gruppe">
+                        <label for="kommentar-text">Kommentar *</label>
+                        <textarea
+                            id="kommentar-text"
+                            [(ngModel)]="commentText"
+                            rows="4"
+                            placeholder="Deine Meinung zum Artikel..."
+                            maxlength="500"></textarea>
+                    </div>
+                    <button type="button" class="btn-kommentar" (click)="submitComment()">
+                        Kommentar abschicken
+                    </button>
+                </div>
+            </section>
         </ng-container>
         <ng-template #notFound>
             <div class="not-found">
