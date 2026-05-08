@@ -1,0 +1,49 @@
+<div class="shop-controls">
+  <div class="search-box">
+    <input
+      type="text"
+      [ngModel]="filters.searchTerm"
+      (ngModelChange)="onSearchTermChange($event)"
+      placeholder="Artikel suchen..."
+      aria-label="Produktsuche"
+    />
+    <span class="search-icon" aria-hidden="true">Suchen</span>
+  </div>
+
+  <div class="filter-controls">
+    <select
+      class="filter-dropdown"
+      [ngModel]="filters.category"
+      (ngModelChange)="onCategoryChange($event)"
+      aria-label="Kategorie filtern"
+    >
+      @for (option of categoryOptions; track option.value) {
+        <option [ngValue]="option.value">{{ option.label }}</option>
+      }
+    </select>
+
+    <select
+      class="filter-dropdown"
+      [ngModel]="filters.priceRange"
+      (ngModelChange)="onPriceRangeChange($event)"
+      aria-label="Preisbereich filtern"
+    >
+      @for (option of priceRangeOptions; track option.value) {
+        <option [ngValue]="option.value">{{ option.label }}</option>
+      }
+    </select>
+
+    <select
+      class="filter-dropdown"
+      [ngModel]="filters.size"
+      (ngModelChange)="onSizeChange($event)"
+      aria-label="Groesse filtern"
+    >
+      @for (option of sizeOptions; track option.value) {
+        <option [ngValue]="option.value">{{ option.label }}</option>
+      }
+    </select>
+
+    <button type="button" class="filter-reset-btn" (click)="onReset()">Filter zuruecksetzen</button>
+  </div>
+</div>

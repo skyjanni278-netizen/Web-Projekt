@@ -1,0 +1,25 @@
+.product-category {
+  text-transform: capitalize;
+}
+
+.product-sizes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin-bottom: 1rem;
+}
+
+.size-pill {
+  border: 1px solid #dbe2e8;
+  border-radius: 12px;
+  padding: 0.15rem 0.45rem;
+  font-size: 0.75rem;
+  color: #2d5a41;
+  font-weight: 600;
+}
+
+.empty-results {
+  border: 2px dashed #e1e5ea;
+  border-radius: 12px;
+  background: #f8f9fa;
+}

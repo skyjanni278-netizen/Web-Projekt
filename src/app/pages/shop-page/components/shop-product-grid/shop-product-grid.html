@@ -1,0 +1,45 @@
+@if (products.length > 0) {
+  <div class="product-grid" id="productGrid">
+    @for (product of products; track product.id) {
+      <div class="product-card" [attr.data-category]="product.category" [attr.data-price]="product.price">
+        <div class="product-image">
+          <img [src]="product.imageUrl" [alt]="product.imageAlt" />
+        </div>
+
+        @if (product.badge) {
+          <div class="product-badge" [class.new]="product.badge === 'neu'" [class.sale]="product.badge === 'sale'">
+            {{ badgeLabel(product.badge) }}
+          </div>
+        }
+
+        <div class="product-info">
+          <div class="product-category">{{ categoryLabel(product.category) }}</div>
+          <h3 class="product-title">{{ product.name }}</h3>
+          <p class="product-description">{{ product.description }}</p>
+          <div class="product-price">
+            <span class="price-current">{{ formatPrice(product.price) }}</span>
+            @if (product.oldPrice) {
+              <span class="price-old">{{ formatPrice(product.oldPrice) }}</span>
+            }
+          </div>
+          <div class="product-sizes">
+            @for (size of product.sizes; track size) {
+              <span class="size-pill">{{ size === 'one-size' ? 'One Size' : size.toUpperCase() }}</span>
+            }
+          </div>
+          <div class="product-actions">
+            <button class="btn-primary" type="button">In den Warenkorb</button>
+            <button class="btn-secondary" type="button" aria-label="Als Favorit markieren">Favorit</button>
+          </div>
+        </div>
+      </div>
+    }
+  </div>
+}
+
+@if (products.length === 0 && showEmptyState) {
+  <div class="empty-state empty-results">
+    <h3>Keine Produkte gefunden</h3>
+    <p>Bitte pruefen Sie Suche und Filter oder setzen Sie alle Filter zurueck.</p>
+  </div>
+}
