@@ -1,7 +1,7 @@
 import { Component, computed, inject } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
-import { SPORT_OFFERS } from '../../data/sports.data';
 import { CartService } from '../../pages/shop-page/data/cart.service';
+import { SportsService } from '../../services/sports.service';
 
 @Component({
   selector: 'app-site-header',
@@ -11,7 +11,8 @@ import { CartService } from '../../pages/shop-page/data/cart.service';
 })
 export class SiteHeader {
   private readonly cartService = inject(CartService);
+  private readonly sportsService = inject(SportsService);
 
-  protected readonly sports = SPORT_OFFERS;
+  protected readonly sports = this.sportsService.getAll();
   protected readonly cartItemCount = computed(() => this.cartService.itemCount());
 }

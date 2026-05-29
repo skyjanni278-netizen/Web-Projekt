@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 import { ActivatedRoute, convertToParamMap, provideRouter } from '@angular/router';
 import { of } from 'rxjs';
 import { afterEach, describe, expect, it, vi } from 'vitest';
-import { getSportOffer } from '../../data/sports.data';
+import { SportsService } from '../../services/sports.service';
 import { SportDetailPage } from './sport-detail-page';
 
 function activatedRouteWithSportId(sportId: string) {
@@ -21,8 +21,6 @@ describe('SportDetailPage', () => {
   });
 
   it('rendert die Detaildaten des Sportangebots aus dem zentralen Data Layer', async () => {
-    const sport = getSportOffer('fussball');
-
     await TestBed.configureTestingModule({
       imports: [SportDetailPage],
       providers: [
@@ -31,6 +29,7 @@ describe('SportDetailPage', () => {
       ]
     }).compileComponents();
 
+    const sport = TestBed.inject(SportsService).getById('fussball');
     const fixture = TestBed.createComponent(SportDetailPage);
     fixture.detectChanges();
 

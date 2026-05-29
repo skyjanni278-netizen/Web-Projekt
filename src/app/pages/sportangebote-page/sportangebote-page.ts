@@ -1,6 +1,6 @@
-import { Component, signal } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { SPORT_OFFERS } from '../../data/sports.data';
+import { SportsService } from '../../services/sports.service';
 
 @Component({
   selector: 'app-sportangebote-page',
@@ -9,7 +9,9 @@ import { SPORT_OFFERS } from '../../data/sports.data';
   styleUrl: './sportangebote-page.css',
 })
 export class SportangebotePage {
-  readonly sports = SPORT_OFFERS;
+  private readonly sportsService = inject(SportsService);
+
+  readonly sports = this.sportsService.getAll();
   readonly isLoading = signal(true);
 
   constructor() {

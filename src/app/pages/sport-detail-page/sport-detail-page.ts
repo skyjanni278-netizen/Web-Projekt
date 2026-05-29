@@ -2,7 +2,7 @@ import { Component, computed, inject } from '@angular/core';
 import { RouterLink, ActivatedRoute } from '@angular/router';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { map } from 'rxjs';
-import { getSportOffer } from '../../data/sports.data';
+import { SportsService } from '../../services/sports.service';
 
 @Component({
   selector: 'app-sport-detail-page',
@@ -12,11 +12,12 @@ import { getSportOffer } from '../../data/sports.data';
 })
 export class SportDetailPage {
   private readonly route = inject(ActivatedRoute);
+  private readonly sportsService = inject(SportsService);
 
   private readonly sportId = toSignal(
     this.route.paramMap.pipe(map((params) => params.get('sportId'))),
     { initialValue: this.route.snapshot.paramMap.get('sportId') },
   );
 
-  readonly sport = computed(() => getSportOffer(this.sportId()));
+  readonly sport = computed(() => this.sportsService.getById(this.sportId()));
 }

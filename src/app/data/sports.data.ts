@@ -202,7 +202,3 @@ export const SPORT_OFFERS: SportOffer[] = [
     ],
   },
 ];
-
-export function getSportOffer(id: string | null): SportOffer | undefined {
-  return SPORT_OFFERS.find((sport) => sport.id === id);
-}
