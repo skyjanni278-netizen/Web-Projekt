@@ -97,6 +97,9 @@ export class NewsPage {
   deleteArticle(event: Event, id: string) {
     event.preventDefault();
     event.stopPropagation();
+    const confirmed = window.confirm('Artikel wirklich löschen? Diese Aktion kann nicht rückgängig gemacht werden.');
+    if (!confirmed) return;
+
     this.newsService.deleteArticle(id);
   }
 }

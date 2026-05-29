@@ -16,7 +16,6 @@ function write(relPath, content) {
 }
 
 const globalCss = [
-  '/* Global shared styles (auto-generated from main.css) */',
   sliceInclusive(1, 271),
   sliceInclusive(350, 375),
   sliceInclusive(376, 481),
@@ -26,23 +25,19 @@ const globalCss = [
 ].join('\n\n');
 
 const homeCss = [
-  '/* Home page styles (auto-generated from main.css) */',
   sliceInclusive(271, 349)
 ].join('\n\n');
 
 const shopCss = [
-  '/* Shop page styles (auto-generated from main.css) */',
   sliceInclusive(212, 238),
   sliceInclusive(482, 884)
 ].join('\n\n');
 
 const sportangeboteCss = [
-  '/* Sportangebote page styles (auto-generated from main.css) */',
   sliceInclusive(885, 994)
 ].join('\n\n');
 
 const sportDetailCss = [
-  '/* Sport detail styles (auto-generated from main.css) */',
   sliceInclusive(995, 1122)
 ].join('\n\n');
 
@@ -51,12 +46,10 @@ const newsCss = [
 ].join('\n\n');
 
 const kontaktCss = [
-  '/* Kontakt page styles (auto-generated from main.css) */',
   sliceInclusive(1174, 1230)
 ].join('\n\n');
 
 const mitgliedschaftCss = [
-  '/* Mitgliedschaft page styles (auto-generated from main.css) */',
   sliceInclusive(1296, 1715)
 ].join('\n\n');
 

@@ -1,0 +1,196 @@
+.sport-detail {
+  padding: 0;
+}
+
+.sport-hero {
+  position: relative;
+  min-height: clamp(420px, 70vh, 760px);
+  overflow: hidden;
+  background: #123520;
+}
+
+.sport-hero img {
+  width: 100%;
+  height: clamp(420px, 70vh, 760px);
+  object-fit: cover;
+  display: block;
+  filter: saturate(1.08) contrast(1.04);
+}
+
+.sport-hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, rgba(9, 34, 20, 0.88), rgba(9, 34, 20, 0.35)),
+    linear-gradient(0deg, rgba(9, 34, 20, 0.58), transparent 55%);
+}
+
+.sport-hero__overlay {
+  position: absolute;
+  z-index: 1;
+  left: clamp(1.5rem, 7vw, 7rem);
+  bottom: clamp(2.5rem, 8vw, 7rem);
+  max-width: 820px;
+  color: #fff;
+}
+
+.sport-hero__overlay p {
+  color: #d6b674;
+  font-size: clamp(0.9rem, 2vw, 1.1rem);
+  font-weight: 800;
+  letter-spacing: 0.2em;
+  margin-bottom: 0.75rem;
+  text-transform: uppercase;
+}
+
+.sport-hero__overlay h1 {
+  font-size: clamp(4rem, 15vw, 12rem);
+  line-height: 0.9;
+  margin: 0 0 1.75rem;
+  text-shadow: 0 18px 45px rgba(0, 0, 0, 0.45);
+}
+
+.sport-hero__cta,
+.sport-actions a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  font-weight: 800;
+  text-decoration: none;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+}
+
+.sport-hero__cta {
+  background: linear-gradient(135deg, #d6b674, #b8860b);
+  color: #143820;
+  padding: 0.95rem 1.5rem;
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.25);
+}
+
+.sport-hero__cta:hover,
+.sport-actions a:hover {
+  transform: translateY(-3px);
+}
+
+.sport-intro {
+  background: linear-gradient(135deg, #1e5631, #2d5a41);
+  color: #fff;
+  padding: clamp(2rem, 5vw, 4rem) clamp(1.25rem, 6vw, 6rem);
+}
+
+.sport-intro p {
+  max-width: 980px;
+  margin: 0 auto;
+  color: #f6f1e7;
+  font-size: clamp(1.15rem, 2.4vw, 1.65rem);
+  line-height: 1.75;
+  text-align: center;
+}
+
+.sport-sections {
+  display: grid;
+  gap: clamp(2rem, 5vw, 4rem);
+  padding: clamp(2.5rem, 6vw, 5rem) clamp(1.25rem, 5vw, 5rem);
+  background:
+    radial-gradient(circle at top left, rgba(197, 165, 114, 0.18), transparent 30rem),
+    linear-gradient(135deg, #f8f9fa, #eef3ef);
+}
+
+.sport-section {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(320px, 0.85fr);
+  gap: clamp(1.5rem, 4vw, 3.5rem);
+  align-items: center;
+  max-width: 1180px;
+  margin: 0 auto;
+}
+
+.sport-section--reverse {
+  grid-template-columns: minmax(320px, 0.85fr) minmax(0, 1fr);
+}
+
+.sport-section--reverse img {
+  order: 2;
+}
+
+.sport-section img {
+  width: 100%;
+  min-height: 320px;
+  max-height: 520px;
+  object-fit: cover;
+  border-radius: 28px;
+  box-shadow: 0 22px 45px rgba(30, 86, 49, 0.18);
+}
+
+.sport-section__text {
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(197, 165, 114, 0.35);
+  border-radius: 28px;
+  padding: clamp(1.5rem, 4vw, 2.75rem);
+  box-shadow: 0 18px 42px rgba(30, 86, 49, 0.12);
+}
+
+.sport-section__text span {
+  color: #b8860b;
+  display: inline-block;
+  font-size: 0.9rem;
+  font-weight: 900;
+  letter-spacing: 0.22em;
+  margin-bottom: 0.75rem;
+}
+
+.sport-section__text h2 {
+  color: #1e5631;
+  font-size: clamp(1.6rem, 3vw, 2.6rem);
+  line-height: 1.1;
+  margin-bottom: 1rem;
+}
+
+.sport-section__text p {
+  color: #2d5a41;
+  font-size: clamp(1rem, 1.5vw, 1.1rem);
+  line-height: 1.8;
+}
+
+.sport-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+  padding: 0 clamp(1.25rem, 5vw, 5rem) clamp(3rem, 6vw, 5rem);
+  background: #eef3ef;
+}
+
+.sport-actions a {
+  min-width: 220px;
+  padding: 0.95rem 1.4rem;
+}
+
+.sport-actions__primary {
+  background: linear-gradient(135deg, #1e5631, #2d5a41);
+  color: #fff;
+  box-shadow: 0 12px 26px rgba(30, 86, 49, 0.25);
+}
+
+.sport-actions__secondary {
+  background: #fff;
+  border: 2px solid #c5a572;
+  color: #1e5631;
+}
+
+@media (max-width: 820px) {
+  .sport-section,
+  .sport-section--reverse {
+    grid-template-columns: 1fr;
+  }
+
+  .sport-section--reverse img {
+    order: 0;
+  }
+
+  .sport-hero__overlay {
+    right: 1.25rem;
+  }
+}

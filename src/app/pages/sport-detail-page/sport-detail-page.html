@@ -1,0 +1,34 @@
+@if (sport(); as currentSport) {
+  <main id="main-content" class="sport-detail">
+    <section class="sport-hero">
+      <img [src]="currentSport.heroImage" [alt]="currentSport.heroAlt">
+      <div class="sport-hero__overlay">
+        <p>Sportangebot</p>
+        <h1>{{ currentSport.name }}</h1>
+        <a routerLink="/mitgliedschaft" class="sport-hero__cta">Mitglied werden</a>
+      </div>
+    </section>
+
+    <section class="sport-intro" aria-label="EinfÃ¼hrung">
+      <p>{{ currentSport.teaser }}</p>
+    </section>
+
+    <section class="sport-sections" aria-label="Details zur Sportart">
+      @for (section of currentSport.sections; track section.title; let index = $index) {
+        <article class="sport-section" [class.sport-section--reverse]="index % 2 === 1">
+          <img [src]="section.image" [alt]="section.imageAlt">
+          <div class="sport-section__text">
+            <span>0{{ index + 1 }}</span>
+            <h2>{{ section.title }}</h2>
+            <p>{{ section.text }}</p>
+          </div>
+        </article>
+      }
+    </section>
+
+    <section class="sport-actions" aria-label="NÃ¤chste Schritte">
+      <a routerLink="/sportangebote" class="sport-actions__secondary">ZurÃ¼ck zur Ãœbersicht</a>
+      <a routerLink="/mitgliedschaft" class="sport-actions__primary">Jetzt Mitglied werden</a>
+    </section>
+  </main>
+}

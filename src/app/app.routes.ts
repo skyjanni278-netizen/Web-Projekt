@@ -1,16 +1,14 @@
 import { Routes } from '@angular/router';
-import { BasketballPage } from './pages/basketball-page/basketball-page';
 import { CartPage } from './pages/cart-page/cart-page';
-import { FussballPage } from './pages/fussball-page/fussball-page';
-import { HandballPage } from './pages/handball-page/handball-page';
 import { HomePage } from './pages/home-page/home-page';
 import { KontaktPage } from './pages/kontakt-page/kontakt-page';
-import { LeerPage } from './pages/leer-page/leer-page';
 import { MitgliedschaftPage } from './pages/mitgliedschaft-page/mitgliedschaft-page';
 import { NewsOnePage } from './pages/news-one-page/news-one-page';
 import { NewsPage } from './pages/news-page/news-page';
 import { NewsUploadPage } from './pages/news-upload-page/news-upload-page';
+import { NotFoundPage } from './pages/not-found-page/not-found-page';
 import { ShopPage } from './pages/shop-page/shop-page';
+import { SportDetailPage } from './pages/sport-detail-page/sport-detail-page';
 import { SportangebotePage } from './pages/sportangebote-page/sportangebote-page';
 
 export const routes: Routes = [
@@ -22,11 +20,8 @@ export const routes: Routes = [
   { path: 'warenkorb', component: CartPage },
   { path: 'cart', redirectTo: 'warenkorb' },
   { path: 'sportangebote', component: SportangebotePage },
-  { path: 'sportangebote/fussball', component: FussballPage },
-  { path: 'sportangebote/handball', component: HandballPage },
-  { path: 'sportangebote/basketball', component: BasketballPage },
+  { path: 'sportangebote/:sportId', component: SportDetailPage },
   { path: 'mitgliedschaft', component: MitgliedschaftPage },
   { path: 'kontakt', component: KontaktPage },
-  { path: 'leer', component: LeerPage },
-  { path: '**', redirectTo: '' },
+  { path: '**', component: NotFoundPage },
 ];

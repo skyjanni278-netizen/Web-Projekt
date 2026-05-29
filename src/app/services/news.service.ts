@@ -9,6 +9,76 @@ const COMMENTS_KEY = 'sv-ente-comments-v1';
 // PIN für den Nachrichtenbeauftragten (kann hier geändert werden)
 export const REDAKTEUR_PIN = '1234';
 
+type UnknownRecord = Record<string, unknown>;
+
+export function parseStoredArticles(rawValue: string | null, fallback: Article[] = DEFAULT_ARTICLES): Article[] {
+  if (!rawValue) return [...fallback];
+
+  try {
+    const parsed: unknown = JSON.parse(rawValue);
+    if (!Array.isArray(parsed)) return [...fallback];
+
+    const validArticles = parsed.filter(isArticle);
+    return validArticles.length > 0 ? validArticles : [...fallback];
+  } catch {
+    return [...fallback];
+  }
+}
+
+export function parseStoredComments(rawValue: string | null): Comment[] {
+  if (!rawValue) return [];
+
+  try {
+    const parsed: unknown = JSON.parse(rawValue);
+    if (!Array.isArray(parsed)) return [];
+
+    return parsed.filter(isComment);
+  } catch {
+    return [];
+  }
+}
+
+export function isArticle(value: unknown): value is Article {
+  if (!isRecord(value)) return false;
+
+  return (
+    isNonEmptyString(value['id']) &&
+    isNonEmptyString(value['slug']) &&
+    isNonEmptyString(value['title']) &&
+    isNonEmptyString(value['author']) &&
+    isNonEmptyString(value['date']) &&
+    isNonEmptyString(value['excerpt']) &&
+    isNonEmptyString(value['content']) &&
+    isNonEmptyString(value['image']) &&
+    isNonEmptyString(value['imageAlt']) &&
+    isStringArray(value['tags'])
+  );
+}
+
+export function isComment(value: unknown): value is Comment {
+  if (!isRecord(value)) return false;
+
+  return (
+    isNonEmptyString(value['id']) &&
+    isNonEmptyString(value['articleSlug']) &&
+    isNonEmptyString(value['author']) &&
+    isNonEmptyString(value['text']) &&
+    isNonEmptyString(value['date'])
+  );
+}
+
+function isRecord(value: unknown): value is UnknownRecord {
+  return typeof value === 'object' && value !== null && !Array.isArray(value);
+}
+
+function isNonEmptyString(value: unknown): value is string {
+  return typeof value === 'string' && value.trim().length > 0;
+}
+
+function isStringArray(value: unknown): value is string[] {
+  return Array.isArray(value) && value.every(item => typeof item === 'string');
+}
+
 @Injectable({ providedIn: 'root' })
 export class NewsService {
   private _articles = signal<Article[]>(this.loadFromStorage());
@@ -19,11 +89,7 @@ export class NewsService {
 
   private loadFromStorage(): Article[] {
     try {
-      const stored = localStorage.getItem(STORAGE_KEY);
-      if (stored) {
-        const parsed: Article[] = JSON.parse(stored);
-        if (parsed.length > 0) return parsed;
-      }
+      return parseStoredArticles(localStorage.getItem(STORAGE_KEY));
     } catch {
       // localStorage nicht verfügbar oder ungültige Daten
     }
@@ -32,8 +98,7 @@ export class NewsService {
 
   private loadComments(): Comment[] {
     try {
-      const stored = localStorage.getItem(COMMENTS_KEY);
-      if (stored) return JSON.parse(stored) as Comment[];
+      return parseStoredComments(localStorage.getItem(COMMENTS_KEY));
     } catch {
       // localStorage nicht verfügbar oder ungültige Daten
     }

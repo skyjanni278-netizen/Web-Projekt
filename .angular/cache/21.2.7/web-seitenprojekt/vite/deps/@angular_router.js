@@ -1,6 +1,6 @@
 import {
   Title
-} from "./chunk-TMUNE5WJ.js";
+} from "./chunk-IQ46GMRQ.js";
 import {
   HashLocationStrategy,
   LOCATION_INITIALIZED,
@@ -12,7 +12,7 @@ import {
   PlatformLocation,
   PlatformNavigation,
   ViewportScroller
-} from "./chunk-Q5FCWNCA.js";
+} from "./chunk-UXAVF7ZW.js";
 import {
   APP_BOOTSTRAP_LISTENER,
   ApplicationRef,
@@ -62,66 +62,68 @@ import {
   ɵɵloadQuery,
   ɵɵqueryRefresh,
   ɵɵsanitizeUrlOrResourceUrl
-} from "./chunk-7B67VUJ5.js";
+} from "./chunk-C2ISAEFB.js";
 import {
-  BehaviorSubject,
   DOCUMENT,
   DestroyRef,
-  EMPTY,
   ENVIRONMENT_INITIALIZER,
-  EmptyError,
   EnvironmentInjector,
   EventEmitter,
   INTERNAL_APPLICATION_ERROR_HANDLER,
   InjectionToken,
   Injector,
   NgZone,
-  Observable,
   PendingTasksInternal,
   RuntimeError,
+  Version,
+  computed,
+  effect,
+  formatRuntimeError,
+  inject,
+  isInjectable,
+  isStandalone,
+  linkedSignal,
+  makeEnvironmentProviders,
+  provideEnvironmentInitializer,
+  runInInjectionContext,
+  signal,
+  untracked,
+  ɵɵdefineInjectable,
+  ɵɵdefineInjector,
+  ɵɵinject
+} from "./chunk-ZIKLOEAX.js";
+import {
+  BehaviorSubject,
+  EMPTY,
+  EmptyError,
+  Observable,
   Subject,
   Subscription,
-  Version,
   __spreadProps,
   __spreadValues,
   catchError,
   combineLatest,
-  computed,
   concat,
   concatMap,
   defer,
-  effect,
   filter,
   finalize,
   first,
-  formatRuntimeError,
   from,
-  inject,
-  isInjectable,
   isObservable,
-  isStandalone,
-  linkedSignal,
-  makeEnvironmentProviders,
   map,
   mergeAll,
   mergeMap,
   of,
   pipe,
-  provideEnvironmentInitializer,
-  runInInjectionContext,
-  signal,
   startWith,
   switchMap,
   take,
   takeLast,
   takeUntil,
   tap,
-  throwError,
-  untracked,
-  ɵɵdefineInjectable,
-  ɵɵdefineInjector,
-  ɵɵinject
-} from "./chunk-5KELANUM.js";
+  throwError
+} from "./chunk-PJVWDKLX.js";
 
 // node_modules/@angular/router/fesm2022/_router-chunk.mjs
 var PRIMARY_OUTLET = "primary";

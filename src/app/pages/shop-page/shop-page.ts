@@ -8,7 +8,7 @@ import {
   signal
 } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ShopFilterPanel } from './components/shop-filter-panel/shop-filter-panel';
 import { ShopProductGrid } from './components/shop-product-grid/shop-product-grid';
 import {
@@ -26,7 +26,7 @@ import { CartService } from './data/cart.service';
 
 @Component({
   selector: 'app-shop-page',
-  imports: [RouterLink, ShopFilterPanel, ShopProductGrid],
+  imports: [ShopFilterPanel, ShopProductGrid],
   templateUrl: './shop-page.html',
   styleUrl: './shop-page.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -39,7 +39,7 @@ export class ShopPage {
   protected readonly filters = signal<ShopFilterState>(DEFAULT_SHOP_FILTERS);
   protected readonly filteredProducts = computed(() => applyShopFilters(this.allProducts(), this.filters()));
   protected readonly hasActiveFilters = computed(() => hasActiveShopFilters(this.filters()));
-  protected readonly cartItemCount = computed(() => this.cartService.itemCount());
+  protected readonly isLoading = signal(true);
 
   private readonly route = inject(ActivatedRoute);
   private readonly router = inject(Router);
@@ -48,8 +48,11 @@ export class ShopPage {
   private readonly allProducts = signal<ShopProduct[]>([]);
 
   constructor() {
-    const validationResult = loadValidatedProducts();
-    this.allProducts.set(validationResult.validProducts);
+    queueMicrotask(() => {
+      const validationResult = loadValidatedProducts();
+      this.allProducts.set(validationResult.validProducts);
+      this.isLoading.set(false);
+    });
 
     this.route.queryParamMap.pipe(takeUntilDestroyed(this.destroyRef)).subscribe((params) => {
       const queryFilters = sanitizeFilterState({
