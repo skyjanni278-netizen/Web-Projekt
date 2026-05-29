@@ -6,7 +6,7 @@ const STORAGE_VERSION = 2;
 const STORAGE_KEY = `sv-ente-articles-v${STORAGE_VERSION}`;
 const COMMENTS_KEY = 'sv-ente-comments-v1';
 
-// PIN für den Nachrichtenbeauftragten (kann hier geändert werden)
+// Demo-PIN: In Produktion durch echte Auth ersetzen
 export const REDAKTEUR_PIN = '1234';
 
 type UnknownRecord = Record<string, unknown>;
