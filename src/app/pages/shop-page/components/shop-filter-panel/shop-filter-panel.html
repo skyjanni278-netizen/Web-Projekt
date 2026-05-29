@@ -37,13 +37,13 @@
       class="filter-dropdown"
       [ngModel]="filters.size"
       (ngModelChange)="onSizeChange($event)"
-      aria-label="Groesse filtern"
+      aria-label="Größe filtern"
     >
       @for (option of sizeOptions; track option.value) {
         <option [ngValue]="option.value">{{ option.label }}</option>
       }
     </select>
 
-    <button type="button" class="filter-reset-btn" (click)="onReset()">Filter zuruecksetzen</button>
+    <button type="button" class="filter-reset-btn" (click)="onReset()">Filter zurücksetzen</button>
   </div>
 </div>

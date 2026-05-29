@@ -423,6 +423,16 @@
     font-weight: 600;
 }
 
+.shop-data-warning {
+    margin: 0 0 1.5rem;
+    padding: 1rem 1.25rem;
+    color: #8a5a00;
+    background: #fff4d8;
+    border: 1px solid #f0cf86;
+    border-radius: 10px;
+    font-weight: 600;
+}
+
 @keyframes spin {
     to { transform: rotate(360deg); }
 }

@@ -1,5 +1,5 @@
 import { TestBed } from '@angular/core/testing';
-import { ActivatedRoute, convertToParamMap, provideRouter, Router } from '@angular/router';
+import { ActivatedRoute, convertToParamMap, provideRouter } from '@angular/router';
 import { of } from 'rxjs';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { getSportOffer } from '../../data/sports.data';
@@ -43,19 +43,18 @@ describe('SportDetailPage', () => {
     expect(image?.getAttribute('src')).toBe(sport?.heroImage);
   });
 
-  it('leitet unbekannte Sportangebote zur Uebersicht zurueck', async () => {
-    const navigateByUrl = vi.fn();
-
+  it('zeigt einen Fehlerzustand für unbekannte Sportangebote', async () => {
     await TestBed.configureTestingModule({
       imports: [SportDetailPage],
       providers: [
-        { provide: ActivatedRoute, useValue: activatedRouteWithSportId('unbekannt') },
-        { provide: Router, useValue: { navigateByUrl } }
+        provideRouter([]),
+        { provide: ActivatedRoute, useValue: activatedRouteWithSportId('unbekannt') }
       ]
     }).compileComponents();
 
-    TestBed.createComponent(SportDetailPage);
+    const fixture = TestBed.createComponent(SportDetailPage);
+    fixture.detectChanges();
 
-    expect(navigateByUrl).toHaveBeenCalledWith('/sportangebote');
+    expect(fixture.nativeElement.textContent).toContain('Sportangebot nicht gefunden');
   });
 });

@@ -31,7 +31,7 @@ describe('app.routes', () => {
     expect(routes[detailIndex]?.component).toBe(NewsOnePage);
   });
 
-  it('enthaelt die geforderten mindestens vier echten Seitenrouten plus Fallback', () => {
+  it('enthält die geforderten mindestens vier echten Seitenrouten plus Fallback', () => {
     const pageRoutes = routes.filter(route => route.path && !route.redirectTo && route.path !== '**');
     const fallbackRoute = routes.at(-1);
 

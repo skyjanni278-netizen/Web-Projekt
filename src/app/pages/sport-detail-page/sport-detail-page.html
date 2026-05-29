@@ -9,7 +9,7 @@
       </div>
     </section>
 
-    <section class="sport-intro" aria-label="EinfÃ¼hrung">
+    <section class="sport-intro" aria-label="Einführung">
       <p>{{ currentSport.teaser }}</p>
     </section>
 
@@ -26,9 +26,18 @@
       }
     </section>
 
-    <section class="sport-actions" aria-label="NÃ¤chste Schritte">
-      <a routerLink="/sportangebote" class="sport-actions__secondary">ZurÃ¼ck zur Ãœbersicht</a>
+    <section class="sport-actions" aria-label="Nächste Schritte">
+      <a routerLink="/sportangebote" class="sport-actions__secondary">Zurück zur Übersicht</a>
       <a routerLink="/mitgliedschaft" class="sport-actions__primary">Jetzt Mitglied werden</a>
+    </section>
+  </main>
+} @else {
+  <main id="main-content" class="sport-detail">
+    <section class="sport-error" aria-labelledby="sport-error-title">
+      <p>Sportangebot nicht gefunden</p>
+      <h1 id="sport-error-title">Diese Sportart ist aktuell nicht hinterlegt.</h1>
+      <span>Bitte gehen Sie zur Übersicht zurück und wählen Sie ein vorhandenes Angebot aus.</span>
+      <a routerLink="/sportangebote" class="sport-actions__primary">Zurück zur Übersicht</a>
     </section>
   </main>
 }

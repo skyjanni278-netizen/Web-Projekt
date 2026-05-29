@@ -15,6 +15,7 @@ export class NewsPage {
   private newsService = inject(NewsService);
 
   readonly ALL_TAGS = ALL_TAGS;
+  isLoading = signal(true);
 
   // Sortierung & Filter
   activeTag = signal<string | null>(null);
@@ -26,6 +27,12 @@ export class NewsPage {
   showPinModal = signal(false);
   pinModalInput = '';
   pinModalError = signal(false);
+
+  constructor() {
+    queueMicrotask(() => this.isLoading.set(false));
+  }
+
+  hasArticles = computed(() => this.newsService.articles().length > 0);
 
   articles = computed(() => {
     let list = this.newsService.articles();

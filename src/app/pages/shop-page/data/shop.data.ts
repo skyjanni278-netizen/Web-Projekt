@@ -6,7 +6,7 @@ export const SHOP_PRODUCTS_RAW: RawShopProduct[] = [
     name: 'Vereins T-Shirt Premium',
     category: 'kleidung',
     description:
-      'Super bequemes T-Shirt aus Bio-Baumwolle. Das Logo sitzt perfekt und die Qualitaet ist echt top.',
+      'Super bequemes T-Shirt aus Bio-Baumwolle. Das Logo sitzt perfekt und die Qualität ist echt top.',
     price: 35,
     sizes: ['s', 'm', 'l', 'xl'],
     imageUrl: '/Bilder/vereinsT-shirt.png',
@@ -18,7 +18,7 @@ export const SHOP_PRODUCTS_RAW: RawShopProduct[] = [
     name: 'Vereinsjacke Softshell',
     category: 'kleidung',
     description:
-      'Mega praktisch bei Wind und Wetter. Haelt was sie verspricht und ist alltagstauglich.',
+      'Mega praktisch bei Wind und Wetter. Hält was sie verspricht und ist alltagstauglich.',
     price: 65,
     oldPrice: 75,
     sizes: ['s', 'm', 'l', 'xl'],
@@ -30,7 +30,7 @@ export const SHOP_PRODUCTS_RAW: RawShopProduct[] = [
     name: 'Fanschal',
     category: 'accessoires',
     description:
-      'Klassischer Fanschal in Vereinsfarben. Perfekt fuer kalte Spieltage und zum Anfeuern.',
+      'Klassischer Fanschal in Vereinsfarben. Perfekt für kalte Spieltage und zum Anfeuern.',
     price: 18,
     sizes: ['one-size'],
     imageUrl: '/Bilder/vereinsSchal.png',
@@ -53,7 +53,7 @@ export const SHOP_PRODUCTS_RAW: RawShopProduct[] = [
     name: 'Sportrucksack',
     category: 'accessoires',
     description:
-      'Praktischer Rucksack fuer Training und Ausfluege mit viel Stauraum und guten Schultergurten.',
+      'Praktischer Rucksack für Training und Ausflüge mit viel Stauraum und guten Schultergurten.',
     price: 45,
     sizes: ['one-size'],
     imageUrl: '/Bilder/vereinsRucksack.png',
@@ -65,7 +65,7 @@ export const SHOP_PRODUCTS_RAW: RawShopProduct[] = [
     name: 'Sporttasche',
     category: 'accessoires',
     description:
-      'Geraeumige Sporttasche fuer Training und Wettkampf. Robustes Material und gute Aufteilung.',
+      'Geräumige Sporttasche für Training und Wettkampf. Robustes Material und gute Aufteilung.',
     price: 38,
     sizes: ['one-size'],
     imageUrl: '/Bilder/vereinsSporttasche.png',
@@ -76,7 +76,7 @@ export const SHOP_PRODUCTS_RAW: RawShopProduct[] = [
     name: 'Vereins Trinkflasche',
     category: 'sport',
     description:
-      'BPA-freie Trinkflasche aus Edelstahl. Haelt Getraenke lange kalt oder warm.',
+      'BPA-freie Trinkflasche aus Edelstahl. Hält Getränke lange kalt oder warm.',
     price: 12,
     sizes: ['one-size'],
     imageUrl: '/Bilder/vereinsTrinkflasche.png',
@@ -93,14 +93,5 @@ export const SHOP_PRODUCTS_RAW: RawShopProduct[] = [
     imageUrl: '/Bilder/vereinsHandtuch.png',
     imageAlt: 'Sporthandtuch',
     badge: 'neu'
-  },
-  {
-    id: 'broken-product',
-    category: 'sport',
-    description: 'Dieses Objekt ist absichtlich unvollstaendig, um Validierung zu demonstrieren.',
-    price: '29',
-    sizes: ['one-size'],
-    imageUrl: '/Bilder/vereinsHandtuch.png',
-    imageAlt: 'Defektes Produkt'
   }
 ];

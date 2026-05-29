@@ -50,7 +50,7 @@ describe('cart.service helpers', () => {
     ]);
   });
 
-  it('setzt ungueltige JSON-Daten sicher zurueck', () => {
+  it('setzt ungültige JSON-Daten sicher zurück', () => {
     const result = parseStoredCart('{oops');
 
     expect(result.items).toEqual([]);

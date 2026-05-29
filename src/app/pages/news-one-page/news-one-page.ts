@@ -41,7 +41,7 @@ export class NewsOnePage implements OnInit {
 
   submitComment(): void {
     if (!this.commentAuthor.trim() || !this.commentText.trim()) {
-      this.commentError.set('Bitte Name und Kommentar ausfuellen.');
+      this.commentError.set('Bitte Name und Kommentar ausfüllen.');
       return;
     }
     this.newsService.addComment(

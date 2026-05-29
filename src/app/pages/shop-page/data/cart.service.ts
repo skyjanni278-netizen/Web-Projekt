@@ -31,7 +31,7 @@ export class CartService {
 
   addItem(productId: string, quantity = 1): void {
     if (!this.productMap.has(productId)) {
-      this.warningState.set('Ein Produkt konnte nicht zum Warenkorb hinzugefuegt werden.');
+      this.warningState.set('Ein Produkt konnte nicht zum Warenkorb hinzugefügt werden.');
       return;
     }
 
@@ -87,7 +87,7 @@ export class CartService {
 
     if (reconciled.removedUnknownProducts > 0) {
       this.warningState.set(
-        `${reconciled.removedUnknownProducts} gespeicherte Position(en) wurden entfernt, weil Produkte nicht mehr verfuegbar sind.`
+        `${reconciled.removedUnknownProducts} gespeicherte Position(en) wurden entfernt, weil Produkte nicht mehr verfügbar sind.`
       );
     }
   }
@@ -105,13 +105,13 @@ export function parseStoredCart(rawValue: string | null): CartStorageParseResult
   try {
     const parsed: unknown = JSON.parse(rawValue);
     if (!Array.isArray(parsed)) {
-      return { items: [], error: 'Ungueltige Warenkorb-Daten wurden zurueckgesetzt.' };
+      return { items: [], error: 'Ungültige Warenkorb-Daten wurden zurückgesetzt.' };
     }
 
     const validItems: CartStorageItem[] = [];
     for (const entry of parsed) {
       if (!isValidCartStorageItem(entry)) {
-        return { items: [], error: 'Ungueltige Warenkorb-Daten wurden zurueckgesetzt.' };
+        return { items: [], error: 'Ungültige Warenkorb-Daten wurden zurückgesetzt.' };
       }
       validItems.push(entry);
     }

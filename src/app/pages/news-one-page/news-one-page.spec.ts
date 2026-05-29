@@ -62,7 +62,7 @@ describe('NewsOnePage', () => {
     };
   }
 
-  it('laedt den Artikel und die Kommentare anhand des Slugs', async () => {
+  it('lädt den Artikel und die Kommentare anhand des Slugs', async () => {
     const { fixture, newsService } = await createComponent();
     const component = fixture.componentInstance;
 
@@ -87,7 +87,7 @@ describe('NewsOnePage', () => {
     expect(component.commentError()).toContain('Name');
   });
 
-  it('speichert Kommentare getrimmt und setzt das Formular zurueck', async () => {
+  it('speichert Kommentare getrimmt und setzt das Formular zurück', async () => {
     vi.useFakeTimers();
     const { fixture, newsService } = await createComponent();
     const component = fixture.componentInstance;

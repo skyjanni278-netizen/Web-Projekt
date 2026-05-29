@@ -24,7 +24,7 @@ const hrefMap = new Map([
   ['shop.html', '/shop'],
   ['Sportangebote.html', '/sportangebote'],
   ['Fußball1.html', '/sportangebote/fussball'],
-  ['FuÃŸball1.html', '/sportangebote/fussball'],
+  ['Fußball1.html', '/sportangebote/fussball'],
   ['Handball1.html', '/sportangebote/handball'],
   ['Basketball1.html', '/sportangebote/basketball'],
   ['Mitgliedschaft.html', '/mitgliedschaft'],

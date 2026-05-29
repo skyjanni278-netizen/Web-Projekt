@@ -8,7 +8,7 @@ const VALID_ARTICLE: Article = {
   title: 'Test Artikel',
   author: 'Redaktion',
   date: '2025-11-05',
-  excerpt: 'Kurzbeschreibung fuer die News-Uebersicht.',
+  excerpt: 'Kurzbeschreibung für die News-Übersicht.',
   content: '<p>Bestehender HTML-Inhalt bleibt erlaubt.</p>',
   image: '/Bilder/test.png',
   imageAlt: 'Testbild',
@@ -28,17 +28,17 @@ describe('news.service validation helpers', () => {
     expect(parseStoredArticles(null)).toEqual(DEFAULT_ARTICLES);
   });
 
-  it('setzt ungueltige Artikel-JSON-Daten sicher auf Default-Artikel zurueck', () => {
+  it('setzt ungültige Artikel-JSON-Daten sicher auf Default-Artikel zurück', () => {
     expect(parseStoredArticles('{kaputt')).toEqual(DEFAULT_ARTICLES);
   });
 
-  it('filtert unvollstaendige Artikel, ohne gueltigen HTML-Inhalt zu veraendern', () => {
+  it('filtert unvollständige Artikel, ohne gültigen HTML-Inhalt zu verändern', () => {
     const result = parseStoredArticles(JSON.stringify([
       VALID_ARTICLE,
       {
         id: 'broken',
         slug: 'broken-news',
-        title: 'Unvollstaendig'
+        title: 'Unvollständig'
       }
     ]));
 
@@ -47,11 +47,11 @@ describe('news.service validation helpers', () => {
     expect(result[0]?.content).toBe('<p>Bestehender HTML-Inhalt bleibt erlaubt.</p>');
   });
 
-  it('liefert eine leere Kommentar-Liste fuer ungueltige JSON-Daten', () => {
+  it('liefert eine leere Kommentar-Liste für ungültige JSON-Daten', () => {
     expect(parseStoredComments('{kaputt')).toEqual([]);
   });
 
-  it('filtert unvollstaendige Kommentare aus gespeicherten Daten', () => {
+  it('filtert unvollständige Kommentare aus gespeicherten Daten', () => {
     const result = parseStoredComments(JSON.stringify([
       VALID_COMMENT,
       {

@@ -5,19 +5,29 @@
     <span>Sechs Sportarten, ein Verein: Bewegung, Gemeinschaft und Spaß für jedes Niveau.</span>
   </section>
 
-  <section class="sport-grid" aria-label="Alle Sportangebote">
-    @for (sport of sports; track sport.id) {
-      <article class="sport-card">
-        <a [routerLink]="['/sportangebote', sport.id]" class="sport-card__image-link" [attr.aria-label]="sport.name + ' ansehen'">
-          <img [src]="sport.heroImage" [alt]="sport.heroAlt">
-        </a>
-        <div class="sport-card__content">
-          <p>Sportangebot</p>
-          <h2><a [routerLink]="['/sportangebote', sport.id]">{{ sport.name }}</a></h2>
-          <span>{{ sport.teaser }}</span>
-          <a [routerLink]="['/sportangebote', sport.id]" class="sport-card__cta">Mehr erfahren</a>
-        </div>
-      </article>
-    }
-  </section>
+  @if (isLoading()) {
+    <div class="sport-state" role="status" aria-live="polite">
+      Sportangebote werden geladen...
+    </div>
+  } @else if (sports.length === 0) {
+    <div class="sport-state sport-state--empty">
+      Aktuell sind keine Sportangebote hinterlegt.
+    </div>
+  } @else {
+    <section class="sport-grid" aria-label="Alle Sportangebote">
+      @for (sport of sports; track sport.id) {
+        <article class="sport-card">
+          <a [routerLink]="['/sportangebote', sport.id]" class="sport-card__image-link" [attr.aria-label]="sport.name + ' ansehen'">
+            <img [src]="sport.heroImage" [alt]="sport.heroAlt">
+          </a>
+          <div class="sport-card__content">
+            <p>Sportangebot</p>
+            <h2><a [routerLink]="['/sportangebote', sport.id]">{{ sport.name }}</a></h2>
+            <span>{{ sport.teaser }}</span>
+            <a [routerLink]="['/sportangebote', sport.id]" class="sport-card__cta">Mehr erfahren</a>
+          </div>
+        </article>
+      }
+    </section>
+  }
 </main>

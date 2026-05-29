@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { SPORT_OFFERS } from '../../data/sports.data';
 
@@ -10,4 +10,9 @@ import { SPORT_OFFERS } from '../../data/sports.data';
 })
 export class SportangebotePage {
   readonly sports = SPORT_OFFERS;
+  readonly isLoading = signal(true);
+
+  constructor() {
+    queueMicrotask(() => this.isLoading.set(false));
+  }
 }

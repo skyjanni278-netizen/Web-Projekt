@@ -56,6 +56,23 @@
   padding: 0 clamp(1rem, 4vw, 2rem);
 }
 
+.sport-state {
+  max-width: 760px;
+  margin: clamp(2rem, 5vw, 4rem) auto 0;
+  padding: 1.5rem;
+  color: #2d5a41;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid rgba(197, 165, 114, 0.35);
+  border-radius: 18px;
+  box-shadow: 0 16px 36px rgba(30, 86, 49, 0.12);
+  font-weight: 700;
+}
+
+.sport-state--empty {
+  color: #6c757d;
+}
+
 .sport-card {
   display: flex;
   flex-direction: column;

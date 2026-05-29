@@ -24,6 +24,11 @@
                     <span>Produkte werden geladen...</span>
                 </div>
             } @else {
+                @if (loadWarning()) {
+                    <div class="shop-data-warning" role="status">
+                        {{ loadWarning() }}
+                    </div>
+                }
                 <app-shop-product-grid
                     [products]="filteredProducts()"
                     [showEmptyState]="hasActiveFilters()"

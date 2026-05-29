@@ -2,7 +2,7 @@
   <div class="container">
     <section class="shop-header">
       <h1>Warenkorb</h1>
-      <p>Sie koennen hier Artikel verwalten, Mengen anpassen und die Gesamtkosten einsehen.</p>
+      <p>Sie können hier Artikel verwalten, Mengen anpassen und die Gesamtkosten einsehen.</p>
     </section>
 
     @if (warning()) {
@@ -15,7 +15,7 @@
     @if (entries().length === 0) {
       <div class="empty-state cart-empty">
         <h3>Ihr Warenkorb ist leer</h3>
-        <p>Fuegen Sie Artikel aus dem Shop hinzu, um mit der Vormerkung zu starten.</p>
+        <p>Fügen Sie Artikel aus dem Shop hinzu, um mit der Vormerkung zu starten.</p>
         <a routerLink="/shop" class="btn-primary cart-back-link">Zum Shop</a>
       </div>
     } @else {
@@ -33,7 +33,7 @@
             <div class="cart-row-qty">
               <button type="button" (click)="decrease(entry.product.id)" aria-label="Menge verringern">-</button>
               <span>{{ entry.quantity }}</span>
-              <button type="button" (click)="increase(entry.product.id)" aria-label="Menge erhoehen">+</button>
+              <button type="button" (click)="increase(entry.product.id)" aria-label="Menge erhöhen">+</button>
             </div>
             <div class="cart-row-subtotal">
               <span>Zwischensumme</span>

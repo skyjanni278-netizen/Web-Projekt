@@ -44,7 +44,7 @@ export const PRICE_RANGE_OPTIONS: PriceRangeOption[] = [
 ];
 
 export const SIZE_OPTIONS: ProductSizeOption[] = [
-  { value: 'all', label: 'Alle Groessen' },
+  { value: 'all', label: 'Alle Größen' },
   { value: 'one-size', label: 'One Size' },
   { value: 's', label: 'S' },
   { value: 'm', label: 'M' },
@@ -125,48 +125,48 @@ export function sanitizeFilterState(input: Partial<ShopFilterState>): ShopFilter
 
 function parseShopProduct(raw: unknown): { ok: true; product: ShopProduct } | { ok: false; reason: string } {
   if (!isRecord(raw)) {
-    return { ok: false, reason: 'Produkt ist kein gueltiges Objekt.' };
+    return { ok: false, reason: 'Produkt ist kein gültiges Objekt.' };
   }
 
   const candidate = raw as CandidateProduct;
 
   if (!isNonEmptyString(candidate.id)) {
-    return { ok: false, reason: 'Produkt-ID fehlt oder ist ungueltig.' };
+    return { ok: false, reason: 'Produkt-ID fehlt oder ist ungültig.' };
   }
 
   if (!isNonEmptyString(candidate.name)) {
-    return { ok: false, reason: `Produkt "${candidate.id}": Name fehlt oder ist ungueltig.` };
+    return { ok: false, reason: `Produkt "${candidate.id}": Name fehlt oder ist ungültig.` };
   }
 
   if (!isProductCategory(candidate.category)) {
-    return { ok: false, reason: `Produkt "${candidate.name}": Kategorie ist ungueltig.` };
+    return { ok: false, reason: `Produkt "${candidate.name}": Kategorie ist ungültig.` };
   }
 
   if (!isNonEmptyString(candidate.description)) {
-    return { ok: false, reason: `Produkt "${candidate.name}": Beschreibung fehlt oder ist ungueltig.` };
+    return { ok: false, reason: `Produkt "${candidate.name}": Beschreibung fehlt oder ist ungültig.` };
   }
 
   if (!isPositiveNumber(candidate.price)) {
-    return { ok: false, reason: `Produkt "${candidate.name}": Preis ist ungueltig.` };
+    return { ok: false, reason: `Produkt "${candidate.name}": Preis ist ungültig.` };
   }
 
   if (candidate.oldPrice !== undefined && !isPositiveNumber(candidate.oldPrice)) {
-    return { ok: false, reason: `Produkt "${candidate.name}": alter Preis ist ungueltig.` };
+    return { ok: false, reason: `Produkt "${candidate.name}": alter Preis ist ungültig.` };
   }
 
   if (!isNonEmptyString(candidate.imageUrl) || !isNonEmptyString(candidate.imageAlt)) {
-    return { ok: false, reason: `Produkt "${candidate.name}": Bilddaten sind ungueltig.` };
+    return { ok: false, reason: `Produkt "${candidate.name}": Bilddaten sind ungültig.` };
   }
 
   if (!isSizeArray(candidate.sizes)) {
-    return { ok: false, reason: `Produkt "${candidate.name}": Groessen sind ungueltig.` };
+    return { ok: false, reason: `Produkt "${candidate.name}": Größen sind ungültig.` };
   }
 
   if (
     candidate.badge !== undefined &&
     !VALID_BADGES.includes(candidate.badge as (typeof VALID_BADGES)[number])
   ) {
-    return { ok: false, reason: `Produkt "${candidate.name}": Badge ist ungueltig.` };
+    return { ok: false, reason: `Produkt "${candidate.name}": Badge ist ungültig.` };
   }
 
   const id = candidate.id as string;

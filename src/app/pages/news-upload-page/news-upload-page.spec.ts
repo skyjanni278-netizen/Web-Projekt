@@ -53,7 +53,7 @@ describe('NewsUploadPage', () => {
       title: 'Neuer Test Artikel',
       author: 'Redaktion',
       date: '2025-11-05',
-      excerpt: 'Kurzer Beschreibungstext fuer den neuen Artikel.',
+      excerpt: 'Kurzer Beschreibungstext für den neuen Artikel.',
       content: 'Absatz eins\n\nAbsatz zwei\nmit Zeile zwei',
       image: ''
     });
@@ -64,7 +64,7 @@ describe('NewsUploadPage', () => {
       title: 'Neuer Test Artikel',
       author: 'Redaktion',
       date: '2025-11-05',
-      excerpt: 'Kurzer Beschreibungstext fuer den neuen Artikel.',
+      excerpt: 'Kurzer Beschreibungstext für den neuen Artikel.',
       content: '<p>Absatz eins</p>\n<p>Absatz zwei<br>mit Zeile zwei</p>',
       image: '/Bilder/SvEnteHeidenheimLogo.png',
       imageAlt: 'Neuer Test Artikel',

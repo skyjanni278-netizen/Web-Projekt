@@ -40,6 +40,7 @@ export class ShopPage {
   protected readonly filteredProducts = computed(() => applyShopFilters(this.allProducts(), this.filters()));
   protected readonly hasActiveFilters = computed(() => hasActiveShopFilters(this.filters()));
   protected readonly isLoading = signal(true);
+  protected readonly loadWarning = signal<string | null>(null);
 
   private readonly route = inject(ActivatedRoute);
   private readonly router = inject(Router);
@@ -51,6 +52,11 @@ export class ShopPage {
     queueMicrotask(() => {
       const validationResult = loadValidatedProducts();
       this.allProducts.set(validationResult.validProducts);
+      this.loadWarning.set(
+        validationResult.invalidProducts.length > 0
+          ? 'Einige Produktdaten waren ungültig und wurden ausgeblendet.'
+          : null
+      );
       this.isLoading.set(false);
     });
 

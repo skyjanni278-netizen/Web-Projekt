@@ -22,7 +22,7 @@ const TEST_PRODUCTS: ShopProduct[] = [
     id: 'cap',
     name: 'Fan Cap',
     category: 'accessoires',
-    description: 'One Size Cap fuer Spieltage',
+    description: 'One Size Cap für Spieltage',
     price: 15,
     sizes: ['one-size'],
     imageUrl: '/cap.png',
@@ -32,7 +32,7 @@ const TEST_PRODUCTS: ShopProduct[] = [
     id: 'jacke',
     name: 'Trainingsjacke',
     category: 'kleidung',
-    description: 'Warme Jacke fuer Wintertraining',
+    description: 'Warme Jacke für Wintertraining',
     price: 72,
     sizes: ['l', 'xl'],
     imageUrl: '/jacke.png',
@@ -41,14 +41,14 @@ const TEST_PRODUCTS: ShopProduct[] = [
 ];
 
 describe('shop.service', () => {
-  it('validiert Rohdaten und entfernt unvollstaendige Produkte', () => {
+  it('validiert Rohdaten und entfernt unvollständige Produkte', () => {
     const result = validateProducts([
       TEST_PRODUCTS[0],
       {
         id: 'broken',
         name: 'Defektes Produkt',
         category: 'sport',
-        description: 'hat keinen gueltigen Preis',
+        description: 'hat keinen gültigen Preis',
         price: '42',
         sizes: ['one-size'],
         imageUrl: '/broken.png',
@@ -83,10 +83,10 @@ describe('shop.service', () => {
     expect(result).toHaveLength(0);
   });
 
-  it('setzt ungueltige Filterwerte auf sichere Defaults zurueck', () => {
+  it('setzt ungültige Filterwerte auf sichere Defaults zurück', () => {
     const result = sanitizeFilterState({
       searchTerm: ' cap ',
-      category: 'ungueltig' as never,
+      category: 'ungültig' as never,
       priceRange: 'falsch' as never,
       size: 'xxl' as never
     });
