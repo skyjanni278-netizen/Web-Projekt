@@ -1,125 +1,108 @@
-    <div class="pin-overlay" *ngIf="showPinModal()" (click)="closePinModal()">
-        <div class="pin-modal" (click)="$event.stopPropagation()">
-            <h3>Redakteur-Modus aktivieren</h3>
-            <p>Bitte PIN eingeben um Artikel löschen zu können.</p>
-            <div class="pin-modal-form">
-                <input
-                    type="password"
-                    [(ngModel)]="pinModalInput"
-                    placeholder="PIN"
-                    class="pin-modal-input"
-                    (keyup.enter)="checkRedakteurPin()"
-                    maxlength="10"
-                    autofocus>
-                <button class="btn-pin-confirm" type="button" (click)="checkRedakteurPin()">
-                    OK
+﻿<div class="pin-overlay" *ngIf="showPinModal()" (click)="closePinModal()">
+    <div class="pin-modal" (click)="$event.stopPropagation()">
+        <h3>Redakteur-Modus aktivieren</h3>
+        <p>Bitte PIN eingeben, um Artikel löschen zu können.</p>
+        <div class="pin-modal-form">
+            <input
+                type="password"
+                [(ngModel)]="pinModalInput"
+                placeholder="PIN"
+                class="pin-modal-input"
+                (keyup.enter)="checkRedakteurPin()"
+                maxlength="10"
+                autofocus>
+            <button class="btn-pin-confirm" type="button" (click)="checkRedakteurPin()">
+                OK
+            </button>
+        </div>
+        <p class="pin-modal-error" *ngIf="pinModalError()">Falscher PIN.</p>
+        <button class="btn-pin-cancel" type="button" (click)="closePinModal()">Abbrechen</button>
+    </div>
+</div>
+
+<main id="main-content">
+    <div class="container">
+        <section class="hero">
+            <h1>News</h1>
+            <p>Aktuelle Vereinsnachrichten und exklusive Einblicke.
+               Hier erfahren Sie alles rund um unsere Mannschaft und das Vereinsgeschehen.</p>
+        </section>
+
+        <section class="news-controls" aria-label="Sortierung und Filter">
+            <div class="sort-group">
+                <span class="controls-label">Sortieren:</span>
+                <button
+                    class="sort-btn"
+                    [ngClass]="{ active: sortField() === 'date' }"
+                    (click)="sortBy('date')"
+                    type="button">
+                    Datum{{ sortIcon('date') }}
+                </button>
+                <button
+                    class="sort-btn"
+                    [ngClass]="{ active: sortField() === 'title' }"
+                    (click)="sortBy('title')"
+                    type="button">
+                    Name{{ sortIcon('title') }}
                 </button>
             </div>
-            <p class="pin-modal-error" *ngIf="pinModalError()">Falscher PIN.</p>
-            <button class="btn-pin-cancel" type="button" (click)="closePinModal()">Abbrechen</button>
-        </div>
-    </div>
 
-    <main id="main-content">
-        <div class="container">
-            <section class="hero">
-                <h1>News</h1>
-                <p>Aktuelle Vereinsnachrichten und exklusive Einblicke.
-                   Hier erfahren Sie alles rund um unsere Mannschaft und das Vereinsgeschehen.</p>
-            </section>
+            <div class="tag-group">
+                <span class="controls-label">Kategorie:</span>
+                <button
+                    class="tag-chip"
+                    [ngClass]="{ active: activeTag() === null }"
+                    (click)="clearTag()"
+                    type="button">
+                    Alle
+                </button>
+                <button
+                    *ngFor="let tag of ALL_TAGS"
+                    class="tag-chip"
+                    [ngClass]="{ active: activeTag() === tag }"
+                    (click)="setTag(tag)"
+                    type="button">
+                    {{ tag }}
+                </button>
+            </div>
+        </section>
 
-            <section class="news-controls" aria-label="Sortierung und Filter">
-                <div class="sort-group">
-                    <span class="controls-label">Sortieren:</span>
-                    <button
-                        class="sort-btn"
-                        [ngClass]="{ active: sortField() === 'date' }"
-                        (click)="sortBy('date')"
-                        type="button">
-                        Datum{{ sortIcon('date') }}
-                    </button>
-                    <button
-                        class="sort-btn"
-                        [ngClass]="{ active: sortField() === 'title' }"
-                        (click)="sortBy('title')"
-                        type="button">
-                        Name{{ sortIcon('title') }}
-                    </button>
-                </div>
+        <h2 class="visually-hidden">Aktuelle Nachrichten</h2>
+        <ng-container *ngIf="isLoading(); else newsContent">
+            <div class="news-state" role="status" aria-live="polite">
+                News werden geladen...
+            </div>
+        </ng-container>
 
-                <div class="tag-group">
-                    <span class="controls-label">Kategorie:</span>
-                    <button
-                        class="tag-chip"
-                        [ngClass]="{ active: activeTag() === null }"
-                        (click)="clearTag()"
-                        type="button">
-                        Alle
-                    </button>
-                    <button
-                        *ngFor="let tag of ALL_TAGS"
-                        class="tag-chip"
-                        [ngClass]="{ active: activeTag() === tag }"
-                        (click)="setTag(tag)"
-                        type="button">
-                        {{ tag }}
-                    </button>
-                </div>
-            </section>
-
-            <h2 class="visually-hidden">Aktuelle Nachrichten</h2>
-            <ng-container *ngIf="isLoading(); else newsContent">
-                <div class="news-state" role="status" aria-live="polite">
-                    News werden geladen...
-                </div>
-            </ng-container>
-
-            <ng-template #newsContent>
+        <ng-template #newsContent>
             <p *ngIf="articles().length === 0" class="no-results">
                 <span *ngIf="hasArticles(); else noArticles">Keine Artikel in dieser Kategorie gefunden.</span>
                 <ng-template #noArticles>Aktuell sind noch keine News vorhanden.</ng-template>
             </p>
 
             <div class="content-grid" *ngIf="articles().length > 0">
-                <div *ngFor="let article of articles()" class="card-wrapper">
-                    <a class="content-card" [routerLink]="['/news', article.slug]">
-                        <h3>{{ article.title }}</h3>
-                        <img [src]="article.image" [alt]="article.imageAlt" class="card-image">
-                        <p class="card-text">{{ article.excerpt }}</p>
-                        <div class="card-spacer"></div>
-                        <div class="card-meta">
-                            <span class="card-author">Von: {{ article.author }}</span>
-                            <span class="card-date">{{ formatDate(article.date) }}</span>
-                        </div>
-                        <div class="card-tags" *ngIf="article.tags.length > 0">
-                            <span *ngFor="let tag of article.tags" class="card-tag">{{ tag }}</span>
-                        </div>
-                    </a>
-                    <button
-                        *ngIf="redakteurModus()"
-                        class="delete-btn"
-                        type="button"
-                        title="Artikel löschen"
-                        (click)="deleteArticle($event, article.id)">
-                        &#x2715;
-                    </button>
-                </div>
+                <app-news-card
+                    *ngFor="let article of articles()"
+                    [article]="article"
+                    [showDeleteButton]="redakteurModus()"
+                    (deleteClicked)="deleteArticle($event)">
+                </app-news-card>
             </div>
-            </ng-template>
+        </ng-template>
 
-            <div class="redakteur-bar">
-                <ng-container *ngIf="!redakteurModus()">
-                    <a routerLink="/news/neu" class="btn btn-upload">+ Neuen Artikel schreiben</a>
-                    <button class="btn-redakteur" type="button" (click)="openPinModal()">
-                        Redakteur-Modus
-                    </button>
-                </ng-container>
-                <ng-container *ngIf="redakteurModus()">
-                    <span class="redakteur-aktiv">Redakteur-Modus aktiv – Artikel können gelöscht werden</span>
-                    <button class="btn-redakteur-off" type="button" (click)="deactivateRedakteurModus()">
-                        Modus beenden
-                    </button>
-                </ng-container>
-            </div>
+        <div class="redakteur-bar">
+            <ng-container *ngIf="!redakteurModus()">
+                <a routerLink="/news/neu" class="btn btn-upload">+ Neuen Artikel schreiben</a>
+                <button class="btn-redakteur" type="button" (click)="openPinModal()">
+                    Redakteur-Modus
+                </button>
+            </ng-container>
+            <ng-container *ngIf="redakteurModus()">
+                <span class="redakteur-aktiv">Redakteur-Modus aktiv – Artikel können gelöscht werden</span>
+                <button class="btn-redakteur-off" type="button" (click)="deactivateRedakteurModus()">
+                    Modus beenden
+                </button>
+            </ng-container>
         </div>
-    </main>
+    </div>
+</main>

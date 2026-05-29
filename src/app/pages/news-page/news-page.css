@@ -1,27 +1,7 @@
-/* ===== Grid: feste 3 Spalten, gleiche Zeilenhöhe ===== */
+﻿/* ===== Grid: feste 3 Spalten, gleiche Zeilenhöhe ===== */
 .content-grid {
   grid-template-columns: repeat(3, 1fr);
   align-items: stretch;
-}
-
-/* card-wrapper füllt die gesamte Grid-Zelle aus und positioniert den Löschen-Button */
-.card-wrapper {
-  position: relative;
-  display: flex;
-  height: 100%;
-}
-
-/* Karte als Flex-Spalte → Meta immer am unteren Rand */
-.content-card {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  width: 100%;
-}
-
-/* Spacer schiebt card-meta und card-tags nach unten */
-.card-spacer {
-  flex: 1;
 }
 
 @media (max-width: 1100px) {
@@ -124,51 +104,6 @@
   border: 1px solid rgba(30, 86, 49, 0.18);
   border-radius: 12px;
   font-weight: 600;
-}
-
-/* ===== Karten-Tags ===== */
-.card-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.3rem;
-  margin-top: 0.5rem;
-  padding: 0 1rem 0.75rem;
-}
-
-.card-tag {
-  font-size: 0.75rem;
-  background: rgba(197, 165, 114, 0.25);
-  color: #2c3e50;
-  border-radius: 10px;
-  padding: 0.15rem 0.6rem;
-  border: 1px solid rgba(197, 165, 114, 0.5);
-}
-
-/* ===== Löschen-Button ===== */
-.delete-btn {
-  position: absolute;
-  top: 0.6rem;
-  right: 0.6rem;
-  width: 2rem;
-  height: 2rem;
-  border-radius: 50%;
-  border: none;
-  background: #dc3545;
-  color: #fff;
-  font-size: 0.9rem;
-  font-weight: bold;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 10;
-  box-shadow: 0 2px 6px rgba(220, 53, 69, 0.4);
-  transition: background 0.2s, transform 0.15s;
-}
-
-.delete-btn:hover {
-  background: #b02a37;
-  transform: scale(1.1);
 }
 
 /* ===== Redakteur-Aktionsleiste ===== */

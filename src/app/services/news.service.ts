@@ -160,6 +160,17 @@ export class NewsService {
     this.persist(updated);
   }
 
+  toSlug(title: string): string {
+    return title
+      .toLowerCase()
+      .replace(/ä/g, 'ae')
+      .replace(/ö/g, 'oe')
+      .replace(/ü/g, 'ue')
+      .replace(/ß/g, 'ss')
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/^-|-$/g, '');
+  }
+
   private ensureUniqueSlug(slug: string): string {
     const existing = this._articles().map(a => a.slug);
     if (!existing.includes(slug)) return slug;
