@@ -4,10 +4,11 @@ import { NgClass, NgFor, NgIf } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { NewsService, REDAKTEUR_PIN } from '../../services/news.service';
 import { ALL_TAGS } from '../../models/article';
+import { NewsCard } from './components/news-card/news-card';
 
 @Component({
   selector: 'app-news-page',
-  imports: [RouterLink, NgFor, NgIf, NgClass, FormsModule],
+  imports: [RouterLink, NgFor, NgIf, NgClass, FormsModule, NewsCard],
   templateUrl: './news-page.html',
   styleUrl: './news-page.css',
 })
@@ -64,11 +65,6 @@ export class NewsPage {
     return this.sortDir() === 'asc' ? ' ↑' : ' ↓';
   }
 
-  formatDate(iso: string): string {
-    const [y, m, d] = iso.split('-');
-    return `${d}.${m}.${y}`;
-  }
-
   // Redakteur-Modus
   openPinModal() {
     this.pinModalInput = '';
@@ -94,12 +90,8 @@ export class NewsPage {
     this.redakteurModus.set(false);
   }
 
-  deleteArticle(event: Event, id: string) {
-    event.preventDefault();
-    event.stopPropagation();
-    const confirmed = window.confirm('Artikel wirklich löschen? Diese Aktion kann nicht rückgängig gemacht werden.');
-    if (!confirmed) return;
-
+  deleteArticle(id: string): void {
+    if (!window.confirm('Artikel wirklich löschen? Diese Aktion kann nicht rückgängig gemacht werden.')) return;
     this.newsService.deleteArticle(id);
   }
 }

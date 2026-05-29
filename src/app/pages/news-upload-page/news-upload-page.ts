@@ -97,21 +97,11 @@ export class NewsUploadPage {
       image: val.image?.trim() || '/Bilder/SvEnteHeidenheimLogo.png',
       imageAlt: val.title.trim(),
       tags: this.selectedTags(),
-      slug: this.toSlug(val.title),
+      slug: this.newsService.toSlug(val.title),
     });
 
     this.submitted.set(true);
     setTimeout(() => this.router.navigate(['/news']), 2000);
   }
 
-  private toSlug(title: string): string {
-    return title
-      .toLowerCase()
-      .replace(/ä/g, 'ae')
-      .replace(/ö/g, 'oe')
-      .replace(/ü/g, 'ue')
-      .replace(/ß/g, 'ss')
-      .replace(/[^a-z0-9]+/g, '-')
-      .replace(/^-|-$/g, '');
-  }
 }

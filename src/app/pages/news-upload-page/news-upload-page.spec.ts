@@ -12,7 +12,10 @@ describe('NewsUploadPage', () => {
   });
 
   async function createComponent() {
-    const newsService = { addArticle: vi.fn() };
+    const newsService = {
+      addArticle: vi.fn(),
+      toSlug: (title: string) => title.toLowerCase().replace(/ä/g, 'ae').replace(/ö/g, 'oe').replace(/ü/g, 'ue').replace(/ß/g, 'ss').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
+    };
     const router = { navigate: vi.fn() };
 
     await TestBed.configureTestingModule({

@@ -1,0 +1,23 @@
+<div class="card-wrapper">
+    <a class="content-card" [routerLink]="['/news', article.slug]">
+        <h3>{{ article.title }}</h3>
+        <img [src]="article.image" [alt]="article.imageAlt" class="card-image">
+        <p class="card-text">{{ article.excerpt }}</p>
+        <div class="card-spacer"></div>
+        <div class="card-meta">
+            <span class="card-author">Von: {{ article.author }}</span>
+            <span class="card-date">{{ formatDate(article.date) }}</span>
+        </div>
+        <div class="card-tags" *ngIf="article.tags.length > 0">
+            <span *ngFor="let tag of article.tags" class="card-tag">{{ tag }}</span>
+        </div>
+    </a>
+    <button
+        *ngIf="showDeleteButton"
+        class="delete-btn"
+        type="button"
+        title="Artikel löschen"
+        (click)="onDelete()">
+        &#x2715;
+    </button>
+</div>

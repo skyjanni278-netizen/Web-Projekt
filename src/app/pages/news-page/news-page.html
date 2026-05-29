@@ -73,29 +73,12 @@
 
             <h2 class="visually-hidden">Aktuelle Nachrichten</h2>
             <div class="content-grid">
-                <div *ngFor="let article of articles()" class="card-wrapper">
-                    <a class="content-card" [routerLink]="['/news', article.slug]">
-                        <h3>{{ article.title }}</h3>
-                        <img [src]="article.image" [alt]="article.imageAlt" class="card-image">
-                        <p class="card-text">{{ article.excerpt }}</p>
-                        <div class="card-spacer"></div>
-                        <div class="card-meta">
-                            <span class="card-author">Von: {{ article.author }}</span>
-                            <span class="card-date">{{ formatDate(article.date) }}</span>
-                        </div>
-                        <div class="card-tags" *ngIf="article.tags.length > 0">
-                            <span *ngFor="let tag of article.tags" class="card-tag">{{ tag }}</span>
-                        </div>
-                    </a>
-                    <button
-                        *ngIf="redakteurModus()"
-                        class="delete-btn"
-                        type="button"
-                        title="Artikel löschen"
-                        (click)="deleteArticle($event, article.id)">
-                        &#x2715;
-                    </button>
-                </div>
+                <app-news-card
+                    *ngFor="let article of articles()"
+                    [article]="article"
+                    [showDeleteButton]="redakteurModus()"
+                    (deleteClicked)="deleteArticle($event)">
+                </app-news-card>
             </div>
 
             <div class="redakteur-bar">
