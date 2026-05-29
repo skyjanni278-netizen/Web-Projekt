@@ -1,227 +1,145 @@
-# SV Ente Heidenheim � Vereinswebsite
+# SV Ente Heidenheim – Vereinswebsite (Semester 2)
 
-Webprojekt f�r den Studiengang Wirtschaftsinformatik an der DHBW Heidenheim.
+Webprojekt für den Studiengang Wirtschaftsinformatik an der DHBW Heidenheim.
+Dynamische Web-Applikation auf Basis von Angular 21 und TypeScript – Weiterentwicklung der statischen HTML/CSS-Version aus Semester 1.
 
-## Projekt�bersicht
+## Projektübersicht
 
-F�r dieses Projekt haben wir eine Website f�r den fiktiven Sportverein �SV Ente Heidenheim� entwickelt. Die Seite stellt alle wichtigen Informationen rund um den Verein bereit � von Sportangeboten bis zum Shop.  
-Wichtig war uns, dass die Seite �bersichtlich, barrierearm und auf verschiedenen Ger�ten gut nutzbar ist.
+Für den fiktiven Sportverein **SV Ente Heidenheim** wurde eine vollständig dynamische Webanwendung entwickelt. Gegenüber der statischen Vorgängerversion bietet die Anwendung interaktive Features wie einen funktionierenden Warenkorb, ein News-CMS mit Kommentarfunktion sowie kombinierbare Shop-Filter. Alles ohne externen Server, ausschließlich mit lokalem State und `localStorage`.
 
-Die Seite umfasst 11 HTML-Seiten mit unterschiedlichen Layout- und Inhaltsbereichen.
+## Setup & Start
 
-## Inhalt der Website
+### Voraussetzungen
 
-- **Homepage** � Hero-Banner, kurze Einordnung, Infokarten  
-- **Sportangebote** � �bersicht + detaillierte Seiten zu Basketball, Fu�ball, Handball  
-- **Shop** � Produkt�bersicht, Filter visuell umgesetzt (CSS-only)  
-- **News** � Nachrichtenseite + einzelne Artikel  
-- **Mitgliedschaft** � Informationen + Formular  
-- **Kontakt** � Kontaktformular und Vereinsinformationen  
+- [Node.js](https://nodejs.org/) (v18 oder neuer)
+- npm (wird mit Node.js mitgeliefert)
 
-## Technische Umsetzung
+### Installation & Start
 
-### Verwendete Technologien
-- **HTML5** f�r die Struktur und semantische Elemente  
-- **CSS3** f�r Layout, Design, Responsiveness (Flexbox, Grid, Transitions, Media Queries)  
+```bash
+# Abhängigkeiten installieren
+npm install
 
+# Entwicklungsserver starten (http://localhost:4200)
+npm start
+```
 
-## Design-Entscheidungen
+### Tests ausführen
 
-### Farbschema
-Passend zum Vereinswappen �Ente� haben wir uns f�r gr�ne und goldene Akzente entschieden:
+```bash
+# Alle Tests einmalig ausführen
+npm test -- --watch=false
 
-- Prim�rfarbe: **#1e5631** (Dunkelgr�n)  
-- Akzentfarbe: **#c5a572** (Gold)  
+# Tests im Watch-Modus (bei Dateiänderungen neu ausführen)
+npm test
+```
 
-### Layout-Varianten
-1. Hero-Banner Layout (Startseite)  
-2. Grid-basiertes Shop-Layout  
-3. Artikel-Layout f�r News  
-4. Sportdetailseiten mit gro�em Bildbereich  
-5. Formular-Layout f�r Mitgliedschaft & Kontakt  
+## Features
 
-### Responsive Design
-Die Responsiveness basiert auf Breakpoints bei **768px**, **480px** und **320px**.  
+### Shop mit Filterung und Warenkorb
+- Live-Suche über Produktname, Beschreibung und Kategorie
+- Kombinierbare Filter: Kategorie, Preisbereich, Größe
+- Filterparameter werden in der URL gespeichert (bookmarkbar)
+- Warenkorb mit Mengensteuerung und Preisberechnung
+- Persistenz via `localStorage` – Warenkorb bleibt nach Reload erhalten
+- Automatische Bereinigung veralteter Warenkorbeinträge bei Produktänderungen
 
-## Barrierefreiheit (WCAG 2.2 Level A)
+### News-CMS
+- 15 vorbelegte Artikel mit Kategorisierung (9 Tags)
+- Redakteursbereich (PIN-geschützt): Artikel erstellen und löschen
+- Automatische Slug-Generierung mit Kollisionserkennung
+- Sortierung nach Datum oder Titel, Filterung nach Tags
+- Kommentarfunktion mit Formularvalidierung
+- Persistenz via `localStorage` inkl. Versionierung
 
-Um die Seite barriere�rmer zu gestalten, wurden folgende Punkte umgesetzt:
+### Sportangebote
+- 6 Sportarten (Fußball, Handball, Basketball, Badminton, Tennis, Tischtennis)
+- Dynamische Detailseiten über URL-Parameter (`/sportangebote/:sportId`)
+- Automatische Weiterleitung bei unbekannter Sport-ID
 
-- **Skip-Link** zu Beginn der Seite  
-- **Semantische Struktur**: `<header>`, `<nav>`, `<main>`, `<article>` usw.  
-- **Alt-Texte** f�r alle Bilder  
-- **Fokus-Indikatoren** f�r Tastaturbedienung  
-- **ARIA-Labels**, wo zus�tzliche Orientierung n�tig war  
-- **Kontrastverh�ltnis** von mindestens 4.5:1  
-- **Saubere �berschriftenhierarchie** (H1 ? H2 ? H3)  
-
-## Browser-Kompatibilit�t
-
-Die Website wurde getestet in:
-
-- Chrome (Windows)  
-- Firefox (Windows)  
-- Safari (mobil)  
-
-Alle relevanten Seiten wurden auf Darstellung, Responsiveness und Navigierbarkeit gepr�ft.
+### Weitere Seiten
+- Mitgliedschaft: Informationsseite mit Formular
+- Kontakt: Kontaktinformationen und Formular
+- 404-Seite für unbekannte Routen
 
 ## Projektstruktur
 
 ```
-web-seitenprojekt/
-�
-+-- index.html              # Startseite
-+-- shop.html               # Shop
-+-- newspage.html           # News-�bersicht
-+-- newseins.html           # Blogartikel
-+-- Sportangebote.html      # �bersicht Sportarten
-+-- Basketball1.html        # Basketball-Seite
-+-- Fu�ball1.html          # Fu�ball-Seite
-+-- Handball1.html         # Handball-Seite
-+-- Mitgliedschaft.html     # Mitgliedschaftsformular
-+-- Kontakt.html            # Kontaktformular
-+-- leer.html               # Vorlage/Platzhalter
-�
-+-- main.css                # Zentrales Stylesheet
-�
-+-- Bilder/                 # Bildmaterial
+src/
+└── app/
+    ├── data/                    # Statische Vereinsdaten (Sportangebote)
+    ├── layout/
+    │   ├── site-header/         # Globale Navigation mit Dropdown und Cart-Badge
+    │   └── site-footer/         # Globaler Footer
+    ├── models/
+    │   └── article.ts           # Interfaces: Article, Comment
+    ├── pages/
+    │   ├── home-page/           # Startseite
+    │   ├── sportangebote-page/  # Sportarten-Übersicht
+    │   ├── sport-detail-page/   # Dynamische Sportdetailseite
+    │   ├── news-page/           # Newsliste mit Filter und Sortierung
+    │   ├── news-one-page/       # Einzelartikel mit Kommentaren
+    │   ├── news-upload-page/    # Artikelerstellung (PIN-geschützt)
+    │   ├── shop-page/           # Produktliste mit Filterung
+    │   │   ├── components/
+    │   │   │   ├── shop-filter-panel/   # Präsentationskomponente Filter
+    │   │   │   └── shop-product-grid/   # Präsentationskomponente Produkte
+    │   │   └── data/
+    │   │       ├── shop.models.ts       # Typen: ShopProduct, ShopFilterState
+    │   │       ├── shop.data.ts         # Produktdaten
+    │   │       ├── shop.service.ts      # Filterlogik, Validierung
+    │   │       ├── cart.models.ts       # Typen: CartEntry, CartSummary
+    │   │       └── cart.service.ts      # Warenkorb-State, localStorage
+    │   ├── cart-page/           # Warenkorbverwaltung
+    │   ├── mitgliedschaft-page/ # Mitgliedschaftsseite
+    │   ├── kontakt-page/        # Kontaktseite
+    │   └── not-found-page/      # 404-Seite
+    ├── services/
+    │   └── news.service.ts      # News-State, localStorage, Kommentare
+    ├── app.routes.ts            # Routing-Konfiguration (11 Routen)
+    └── app.config.ts            # Angular-Konfiguration
 ```
 
-# Besonderheiten im Code (Quellcode-Dokumentation)
+## Technologie-Stack
 
-## 1. Dropdown-Men� ohne JavaScript
+| Bereich | Technologie |
+|---------|-------------|
+| Framework | Angular 21 (Standalone Components) |
+| Sprache | TypeScript 5.9 (strict mode) |
+| State Management | Angular Signals (`signal`, `computed`) |
+| Persistenz | `localStorage` |
+| Tests | Vitest 4 + Angular TestBed |
+| Formatter | Prettier 3 |
 
-Um die Navigation ohne JS umzusetzen, wurde ein CSS-Only Dropdown gebaut.
+## Architekturentscheidungen
 
-**HTML-Struktur:**
-```html
-<li class="dropdown">
-  <a href="#">Sportangebote</a>
-  <ul class="submenu">
-    <li><a href="Basketball1.html">Basketball</a></li>
-  </ul>
-</li>
-```
+- **Keine externen API-Calls:** Alle Daten liegen lokal (statische Arrays oder `localStorage`). Die Anwendung ist vollständig offline-fähig.
+- **Angular Signals:** Reaktiver State ohne NgRx – `computed()` für abgeleitete Werte, `toSignal()` für RxJS-Integration.
+- **Validierung am Data-Layer:** Produkte und gespeicherte Daten werden beim Laden validiert; fehlerhafte Einträge werden verworfen statt die App zum Absturz zu bringen.
+- **Presentational vs. Container Components:** `ShopFilterPanel` und `ShopProductGrid` haben keine eigene Logik – sie kommunizieren ausschließlich über `@Input`/`@Output`.
 
-**CSS-Logik:**
-```css
-.dropdown:hover .submenu,
-.dropdown:focus-within .submenu {
-    display: block;
-}
-```
+## Farbschema
 
-`:focus-within` sorgt daf�r, dass die Navigation auch per Tastatur funktioniert.
+Passend zum Vereinswappen wurden folgende Farben gewählt:
 
-## 2. Sticky Header
+- Primärfarbe: `#1e5631` (Dunkelgrün)
+- Akzentfarbe: `#c5a572` (Gold)
 
-```css
-header {
-    position: sticky;
-    top: 0;
-    z-index: 100;
-}
-```
+## Barrierefreiheit
 
-Dadurch bleibt der Header beim Scrollen sichtbar.
-
-## 3. Responsive Bilder
-
-```css
-img {
-    max-width: 100%;
-    height: auto;
-}
-```
-
-Damit passen sich Bilder automatisch der verf�gbaren Breite an.
-
-## 4. Shop-Layout mit CSS-Grid
-
-```css
-.shop-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 1.2rem;
-}
-```
-
-Das Gitter passt sich flexibel an verschiedene Fenstergr��en an.
-
-## 5. Shop-Filter (CSS-only)
-
-Der Filterbereich ist rein optisch vorhanden.  
-Eine echte Filterlogik w�rde JavaScript erfordern.
-
-# Testhinweise
-
-## Responsiveness getestet
-- Browser DevTools verwenden (Ger�teansicht)  
-- Wichtige Seiten testen: Startseite, Shop, Formulare  
-- Typische Testbreiten: **320px**, **480px**, **768px**, **1024px**
-
-## Barrierefreiheit getestet
-- Navigation per **Tab-Taste**  
-- Skip-Link ausprobieret  
-- Fokus-Markierungen  
-
-## Bildquellen
-Alle verwendeten Bilder wurden selbst bzw. KI-basiert erzeugt.
+- Skip-Link zu Beginn jeder Seite
+- Semantische HTML-Elemente (`<header>`, `<nav>`, `<main>`, `<article>`)
+- ARIA-Labels auf allen interaktiven Elementen
+- Fokusindikatoren für Tastaturnavigation
+- Live-Regions für dynamische Statusmeldungen
 
 ## Autoren
-Peter Lang (Matrikelnummer: 8613964)  
-Janek Frank (Matrikelnummer: 5607006)
-Lukas Reiser (Matrikelnummer: 5527863)
-Tarek Kadu Turkmani (Matrikelnummer: 1650970)
 
-## Erweiterung: Dynamischer Shop-Filter mit Live-Suche
+| Name | Matrikelnummer |
+|------|----------------|
+| Peter Lang | 8613964 |
+| Janek Frank | 5607006 |
+| Lukas Reiser | 5527863 |
+| Tarek Kadu Turkmani | 1650970 |
 
-Die Shopseite wurde gegen�ber der Semester-1-Version funktional erweitert. Der bisher rein visuelle Filter arbeitet jetzt dynamisch in TypeScript mit lokalen Mockdaten.
-
-### Neu umgesetzt
-- Live-Suche �ber Produktname, Kategorie und kurze Beschreibung
-- Kombinierbare Filter f�r Kategorie, Preisbereich und Gr��e
-- Reset-Button zum Zur�cksetzen aller Filter
-- Verst�ndlicher Empty State bei 0 Treffern
-- Validierung unvollst�ndiger/ung�ltiger Produktdaten im Data Layer
-
-### Technische Einordnung
-- Daten bleiben lokal (keine API, keine Datenbank)
-- Filter- und Validierungslogik liegt zentral im Data Layer (nicht in der UI)
-- Die Shop-Route /shop bleibt bestehen; Filter k�nnen kombiniert genutzt werden
-
-### Mehrwert
-Das Feature l�st ein echtes Nutzerproblem: Besucher finden bei wachsendem Sortiment schneller passende Produkte statt nur statische Karten zu durchsuchen.
-
-## Erweiterung: Warenkorb mit localStorage
-
-Die Shopseite wurde um einen interaktiven Warenkorb erweitert. Nutzer koennen Produkte vormerken, Mengen anpassen und eine Gesamtsumme berechnen lassen.
-
-### Feature-Beschreibung
-- Produkte lassen sich direkt im Shop zum Warenkorb hinzufuegen
-- Eigene Warenkorbseite unter `/warenkorb` (Alias: `/cart`)
-- Warenkorb bleibt per `localStorage` nach Reload erhalten
-- Mengen koennen erhoeht, verringert oder entfernt werden
-- Bei Menge `0` wird ein Produkt automatisch entfernt
-- Zwischensumme pro Position, Gesamtsumme und Gesamtanzahl werden angezeigt
-- Button zum Leeren des kompletten Warenkorbs
-- Empty State bei leerem Warenkorb
-
-### Technischer Aufbau
-- Component-Struktur: `ShopPage` (Produktliste + Add-to-Cart), `CartPage` (Warenkorbverwaltung), `ShopProductGrid` (Add-to-Cart Event)
-- Data Layer: `cart.models.ts` (Typen), `cart.service.ts` (Storage, Validierung, Reconciliation, Summen)
-- Fehlerbehandlung: ungueltige localStorage-Daten werden zurueckgesetzt, nicht mehr verfuegbare Produkte werden entfernt
-
-### Startanleitung
-```bash
-npm install
-npm start
-```
-
-### Testanleitung
-```bash
-npm test -- --watch=false
-```
-
-### Mehrwert (Kurzbegruendung)
-Im Unterschied zur statischen Seite koennen Nutzer jetzt aktiv Artikel sammeln, Mengen pruefen und Kosten einschaetzen. Das macht den Shop fuer Vereinsmitglieder und Eltern praktisch nutzbar.
+DHBW Heidenheim – Studiengang Wirtschaftsinformatik
